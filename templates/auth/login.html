@@ -7,13 +7,13 @@
     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
   </div>
   
-  <form class="user">
+  <form class="user" method="POST">
     <div class="form-group">
-      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+      <input name="usrnm" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
     </div>
     
     <div class="form-group">
-      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+      <input name="pwd" type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
     </div>
     
     <div class="form-group">
@@ -22,12 +22,13 @@
         <label class="custom-control-label" for="customCheck">Remember Me</label>
       </div>
     </div>
-    
-    <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-user btn-block">Login</a>
+
+    <button class="btn btn-primary btn-user btn-block" type="submit">Login</button>
     <hr>
   </form>
-  
+
   <div class="text-center">
+    <div class="h4 text-gray-900 mb-4">{{pesan}}</div>
     <a class="small" href="{{ url_for('forgot_pwd') }}">Forgot Password?</a>
   </div>
 {% endblock %}
