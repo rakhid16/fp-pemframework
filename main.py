@@ -172,3 +172,5 @@ def keluar():
     return redirect('/')
   else:
     return redirect('/')
+
+#app.run(debug=True)
