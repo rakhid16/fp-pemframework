@@ -6,6 +6,8 @@ app.secret_key = "rahasia"
 
 client = MongoClient("mongodb+srv://ikal:123@forusers-3aig6.mongodb.net/test?retryWrites=true&w=majority")
 
+# AWAL - SEBELUM MASUK ==========================================================================================
+
 @app.route('/')
 def index():
   return render_template("index.html")
@@ -33,16 +35,28 @@ def login():
 def forgot_pwd():
   return render_template("auth/forgot-password.html")
 
+# AKHIR - SEBELUM MASUK ==========================================================================================
+
+# AWAL - MENU ADMIN ==========================================================================================
+
 @app.route('/admin', methods=["POST", "GET"])
 def admin():
   if "akun" in session:
+
+    jumlah = [client.test.data_mhs.count_documents({"prodi" : "Sistem Informasi"}),
+              client.test.data_mhs.count_documents({"prodi" : "Informatika"}),
+              client.test.data_dosen.count_documents({"prodi" : "Sistem Informasi"}),
+              client.test.data_dosen.count_documents({"prodi" : "Informatika"})]
+    
+    sandi = client.test.akun_admin.find_one({"email" : session['akun']})['sandi']
+
     if request.method == "POST":
       if request.form["peran"] == "dosen":
         client.test.data_dosen.insert_one({"_id" : request.form["id"], "nama" : request.form["nama"], "prodi" : request.form["prodi"], "email" : request.form["email"], "sandi" : request.form["sandi"]})  
       elif request.form["peran"] == "mhs":
         client.test.data_mhs.insert_one({"_id" : request.form["id"], "nama" : request.form["nama"], "prodi" : request.form["prodi"], "email" : request.form["email"], "sandi" : request.form["sandi"]})
-      return render_template("dashboard_admin/dashboard.html", email = session['akun'])
-    return render_template("dashboard_admin/dashboard.html", email = session['akun'])
+      return render_template("dashboard_admin/dashboard.html", email = session['akun'], jumlah = jumlah, sandi = sandi)
+    return render_template("dashboard_admin/dashboard.html", email = session['akun'], jumlah = jumlah, sandi = sandi)
   else:
     return render_template("auth/login.html", pesan = "Anda harus masuk terlebih dahulu")
 
@@ -90,7 +104,12 @@ def hapus(peran, unik):
 @app.route('/admin/edit/<peran>/<unik>', methods=["POST", "GET"])
 def edit(peran, unik):
   if "akun" in session and request.method == "POST":
-    if "@student.upnjatim" not in peran:
+    if "@admin.fik_ocw" in peran:
+      client.test.akun_admin.update_one({"email" : unik},
+                                        {"$set" : {"sandi" : request.form['sandi']}})
+      return redirect(url_for('admin'))
+
+    elif "@student.upnjatim" not in peran:
       client.test.data_dosen.update_one({"_id" : unik},
                                         {"$set" : {"nama" : request.form['nama'],
                                                   "prodi" : request.form['prodi'],
@@ -109,13 +128,9 @@ def edit(peran, unik):
   else:
     return render_template("auth/login.html", pesan = "Anda harus masuk terlebih dahulu")
 
-@app.route('/dashboard/<npm>')
-def dashboard(npm):
-  if "akun" in session:
-    data_mhs = client.test.data_mhs.find_one({"_id" : npm})
-    return render_template("dashboard/dashboard.html", data_mhs = data_mhs)
-  else:
-    return render_template("auth/login.html", pesan = "Anda harus masuk terlebih dahulu")
+# AKHIR - MENU ADMIN ==========================================================================================
+
+# AWAL - MENU DOSEN ==========================================================================================
 
 @app.route('/dosen/<nrp>')
 def dosen(nrp):
@@ -125,9 +140,33 @@ def dosen(nrp):
   else:
     return render_template("auth/login.html", pesan = "Anda harus masuk terlebih dahulu")
 
+# AKHIR - MENU DOSEN ==========================================================================================
+
+# AWAL - MENU MAHASISWA ==========================================================================================
+
+@app.route('/dashboard/<npm>')
+def dashboard(npm):
+  if "akun" in session:
+    data_mhs = client.test.data_mhs.find_one({"_id" : npm})
+    return render_template("dashboard/dashboard.html", data_mhs = data_mhs)
+  else:
+    return render_template("auth/login.html", pesan = "Anda harus masuk terlebih dahulu")
+
+# AKHIR - MENU MAHASISWA ==========================================================================================
+
+# AWAL - MENU UMUM ==========================================================================================
+
 @app.route('/404')
 def not_found():
   return render_template("dashboard/404.html")
+
+@app.route('/keluar')   # LOG OUT
+def keluar():
+  if 'akun' in session :
+    session.pop('akun')
+    return redirect('/')
+  else:
+    return redirect('/')
 
 @app.route('/blank')
 def blank():
@@ -165,12 +204,6 @@ def utilities_c():
 def utilities_o():
   return render_template("dashboard/utilities-other.html")
 
-@app.route('/keluar')   # LOG OUT
-def keluar():
-  if 'akun' in session :
-    session.pop('akun')
-    return redirect('/')
-  else:
-    return redirect('/')
+# AKHIR - MENU UMUM ==========================================================================================
 
 #app.run(debug=True)
