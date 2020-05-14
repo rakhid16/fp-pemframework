@@ -4,7 +4,7 @@ from flask import Flask, render_template, url_for, session, request, redirect
 app = Flask(__name__)
 app.secret_key = "rahasia"
 
-client = MongoClient("RAHASIA GAN!")
+client = MongoClient("mongodb+srv://ikal:123@forusers-3aig6.mongodb.net/test?retryWrites=true&w=majority")
 
 # AWAL - SEBELUM MASUK ==========================================================================================
 
@@ -206,4 +206,4 @@ def utilities_o():
 
 # AKHIR - MENU UMUM ==========================================================================================
 
-app.run(debug=True)
+#app.run(debug=True)
