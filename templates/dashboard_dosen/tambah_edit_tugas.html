@@ -1,0 +1,70 @@
+{% extends 'dashboard_dosen/base.html' %}
+
+{% block title %}Laman Masuk{% endblock %}
+
+{% block main_content %}
+<!-- Page Heading 
+<h1 class="h3 mb-2 text-gray-800">Charts</h1>
+<p class="mb-4">Chart.js is a third party plugin that is used to generate the charts in this theme. The charts below have been customized - for further customization options, please visit the <a target="_blank" href="https://www.chartjs.org/docs/latest/">official Chart.js documentation</a>.</p>
+-->
+
+
+<div class="row">
+  <div class="col-lg-6">
+
+    <!-- Area Chart -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Materi Perkuliahan Pekan - {{ pekan }}</h6>
+      </div>
+      
+      <div class="card-body">
+        <p>
+          Judul Materi<br><input type="text" name="judul_materi" placeholder="Masukan nama materi"><br><br>
+          Unggah Materi Video<br><input type="file" name="materi_video" accept="video/*"><br><br>
+          Unggah Materi PDF/ZIP<br><input type="file" name="materi_pdf_zip" accept="application/pdf, application/zip"><br><br>
+          Materi Video<br>
+          <video controls width=100% height=100%>
+            <source src="{{ video }}" type="video/mp4">
+          </video><br><br>
+          Materi PDF/ZIP<br>
+          <a href="{{ pdf_zip }}" target=_blank>Lihat Materi</a>
+        </p>
+      </div>
+    
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+
+    <!-- Area Chart -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Tugas Perkuliahan Pekan - {{ pekan }}</h6>
+      </div>
+      <div class="card-body">
+        <div class="chart-area">
+          Nama Tugas<br><input type="text" name="judul_materi" placeholder="Masukan nama materi"><br><br>
+          Batas Pengumpulan Tugas<br>
+          Deskripsi Tugas<br>
+          
+      </div>
+    </div>
+
+  </div>
+
+  </div>
+
+ </div>
+
+          {% endblock %}
+
+  {% block another_JS %}
+  <!-- Page level plugins -->
+  <script src="{{ url_for('static', filename='vendor/chart.js/Chart.min.js') }}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{{ url_for('static', filename='js/demo/chart-area-demo.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/demo/chart-pie-demo.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/demo/chart-bar-demo.js') }}"></script>
+  {% endblock %}

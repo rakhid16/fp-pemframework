@@ -1272,6 +1272,7 @@ button:focus {
 .single-team .team-inner {
   -webkit-transition: 0.5s;
   transition: 0.5s;
+  text-align: center;
 }
 
 .single-team .team-details {

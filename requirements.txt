@@ -2,3 +2,5 @@ gunicorn
 flask
 pymongo
 dnspython
+flask_mail
+pyrebase

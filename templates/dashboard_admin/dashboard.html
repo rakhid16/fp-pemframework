@@ -1,11 +1,11 @@
 {% extends 'dashboard_admin/base.html' %}
 
-{% block title %}Laman Masuk{% endblock %}
+{% block title %}Dashboard Admin{% endblock %}
 
 {% block main_content %}
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-  <h1 class="h3 mb-0 text-gray-800">Dashboard</h1><br>
+  <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>{{ pesan }}<br><br><br>
   <a href="#" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#TambahData" ><i class="fas fa-user-plus"></i> Buat Akun Baru</a>
 </div>
 
@@ -110,7 +110,7 @@
         </button>
       </div>
       
-      <form method="POST">
+      <form onsubmit="Cek_Sandi()" method="POST">
       <div class="modal-body">   
           <label>Peran</label><br>
           <select name="peran">
@@ -118,7 +118,7 @@
             <option value="mhs">Mahasiswa</option>
           </select><br><br>
           
-          NPM/NRP<br><input type="text" name="id" required><br><br>
+          NPM/NRP<br><input type="text" name="id" required><br>
           Nama<br><input type="text" name="nama" placeholder="Masukkan Nama" required><br><br>
           
           <label>Jurusan</label><br>
@@ -128,8 +128,8 @@
           </select><br><br>
   
           Surel<br><input type="email" name="email" placeholder="Masukkan email" required><br><br>
-          Kata Sandi<br><input type="password" name="sandi" placeholder="Masukkan kata sandi" required><br><br>
-          Ulangi Sandi<br><input type="password" name="sandi" placeholder="Masukkan kata sandi" required><br><br>
+          Kata Sandi<br><input type="password" id="sandi_baru" name="sandi_baru" placeholder="Masukkan kata sandi" required><br><br>
+          Ulangi Sandi<br><input type="password" id="sandi_baru_2" name="sandi_baru2" placeholder="Masukkan kata sandi" required><br><br>
         </div>
 
       <div class="modal-footer">

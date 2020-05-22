@@ -1,6 +1,6 @@
 {% extends 'dashboard_admin/base.html' %}
 
-{% block title %}Tables{% endblock %}
+{% block title %}{{ keterangan }}{% endblock %}
 
 {% block another_CSS %}
 <!-- Custom styles for this page -->
@@ -87,21 +87,19 @@
                   </button>
                 </div>
 
-                <form action="{{ url_for('edit', unik = baris[0], peran=baris[3]) }}" method="POST">
+              <form action="{{ url_for('edit', unik = baris[0], peran=baris[3]) }}" method="POST">
                 <div class="modal-body">             
                   NPM/NRP<br><input readonly type="text" name="id" value="{{ baris[0] }}"><br><br>
                   Nama<br><input type="text" name="nama" placeholder="Masukkan Nama" value="{{ baris[1] }}" required><br><br>
                   
                   <label>Jurusan</label><br>
                   <select name="prodi" >
-                    <option >-Pilih Jurusan-</option>
-                    <option value="Informatika">Informatika</option>
-                    <option value="Sistem Informasi">Sistem Informasi</option>
+                    <option>{{ baris[2] }}</option>
                   </select><br><br>
           
-                  Surel<br><input type="email" name="email" placeholder="Masukkan email" value="{{ baris[3] }}" required><br><br>
-                  Kata Sandi<br><input type="text" name="sandi" placeholder="Masukkan kata sandi" value="{{ baris[4] }}" required><br><br>
-                  Ulangi Sandi<br><input type="text" name="sandi" placeholder="Masukkan kata sandi" required><br><br>
+                  Surel<br><input type="email" name="email" value="{{ baris[3] }}" required><br><br>
+                  Sandi lama<br><input readonly type="text" value="{{ baris[4] }}" required><br><br>
+                  Sandi baru<br><input type="text" name="sandi_baru"><br><br>
                 </div>
               
                 <div class="modal-footer">
@@ -129,4 +127,5 @@
 
 <!-- Page level custom scripts -->
 <script src="{{ url_for('static', filename='js/demo/datatables-demo.js') }}"></script>
+<script src="{{ url_for('static', filename='js/sandi_mhs_dosen.js') }}"></script>
 {% endblock %}

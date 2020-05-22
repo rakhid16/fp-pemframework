@@ -9,6 +9,7 @@
   <meta name="author" content="">
 
   <title>{% block title %}{% endblock %}</title>
+  <link rel="icon" href="{{ url_for('static', filename='favicon_io/android-chrome-192x192.png' )}}" type="image/gif" sizes="16x16">
 
   <!-- Custom fonts for this template-->
   <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -107,7 +108,6 @@
             <a class="collapse-item" href="{{ url_for('forgot_pwd') }}">Forgot Password</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="{{ url_for('not_found') }}">404 Page</a>
             <a class="collapse-item" href="{{ url_for('blank') }}">Blank Page</a>
           </div>
         </div>
@@ -209,16 +209,16 @@
       <div class="modal-content">
         
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Mau keluar?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
         
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-body">Pilih "keluar" jika ingin keluar.</div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="{{ url_for('keluar') }}">Logout</a>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
+          <a class="btn btn-primary" href="{{ url_for('keluar') }}">Keluar</a>
         </div>
       
       </div>

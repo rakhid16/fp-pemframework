@@ -9,6 +9,7 @@
   <meta name="author" content="">
 
   <title>{% block title %}{% endblock %}</title>
+  <link rel="icon" href="{{ url_for('static', filename='favicon_io/android-chrome-192x192.png' )}}" type="image/gif" sizes="16x16">
 
   <!-- Custom fonts for this template-->
   <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -48,43 +49,12 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
-
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="{{ url_for('tambah_mata_kuliah', nrp = data_dosen['_id']) }}">
           <i class="fas fa-fw fa-cog"></i>
           <span>Mata Kuliah</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{ url_for('buttons') }}">Tambah Mata Kuliah</a>
-            <h6 class="collapse-header">Mata Kuliah yang diampu:</h6>
-            <a class="collapse-item" href="{{ url_for('buttons') }}">Pemrograman Dasar</a>
-            <a class="collapse-item" href="{{ url_for('cards') }}">Struktur Data</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Materi/Tugas</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{ url_for('utilities_o') }}">Tambah Materi/Tugas</a>
-            <h6 class="collapse-header">Mata Kuliah yang diampu::</h6>
-            <a class="collapse-item" href="{{ url_for('utilities_o') }}">Colors</a>
-            <a class="collapse-item" href="{{ url_for('utilities_b') }}">Borders</a>
-            <a class="collapse-item" href="{{ url_for('utilities_a') }}">Animations</a>
-            <a class="collapse-item" href="{{ url_for('utilities_c') }}">Other</a>
-          </div>
-        </div>
       </li>
 
       <!-- Divider -->
@@ -97,32 +67,17 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="#">
           <i class="fas fa-fw fa-folder"></i>
           <span>Tugas Terkumpul</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Mata Kuliah:</h6>
-            <a class="collapse-item" href="{{ url_for('login') }}">Pemrograman Dasar</a>
-            <a class="collapse-item" href="{{ url_for('forgot_pwd') }}">Struktur Data</a>
-          </div>
-        </div>
-      </li>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNilai" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="#">
           <i class="fas fa-fw fa-folder"></i>
           <span>Nilai Mahasiswa</span>
         </a>
-        <div id="collapseNilai" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Mata Kuliah:</h6>
-            <a class="collapse-item" href="{{ url_for('login') }}">Login</a>
-            <a class="collapse-item" href="{{ url_for('forgot_pwd') }}">Forgot Password</a>
-          </div>
-        </div>
       </li>
 
       <!-- Divider -->
@@ -221,16 +176,16 @@
       <div class="modal-content">
         
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Mau keluar?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
         
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-body">Pilih "keluar" jika ingin keluar.</div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="{{ url_for('keluar') }}">Logout</a>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
+          <a class="btn btn-primary" href="{{ url_for('keluar') }}">Keluar</a>
         </div>
       
       </div>
@@ -246,6 +201,7 @@
 
   <!-- Custom scripts for all pages-->
   <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/sandi.js') }}"></script>
 
   {% block another_JS %}{% endblock %}
 
