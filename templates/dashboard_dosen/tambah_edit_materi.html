@@ -1,0 +1,68 @@
+{% extends 'dashboard_dosen/base.html' %}
+
+{% block title %}Tambah/Edit Materi {{mata_kul}} Pekan ke {{ pekan }}{% endblock %}
+
+{% block main_content %}
+<a style="float: right;" href="{{ url_for('mata_kuliah_dos', nrp = data_dosen['_id'], matkul = mata_kul) }}" class="icon d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-arrow-left"></i> Kembali</a><br><br>
+
+<div class="row">
+  <div class="col-lg-12">
+
+    <!-- Area Chart -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Materi Perkuliahan Pekan - {{ pekan }}</h6>
+      </div>
+      
+      <div class="card-body">
+        <form action="{{ url_for('tambah_edit_materi', nrp = data_dosen['_id'], matkul = mata_kul, pekan = pekan) }}" method="POST" enctype="multipart/form-data">
+        <p>
+          Unggah Materi Video<br><input style="width:100%" type="file" name="materi_video" accept="video/*"><br><br>
+          Unggah Materi PDF/ZIP<br><input style="width:100%" type="file" name="materi_pdf" accept=".pdf"><br><br>
+          
+          <a class="btn btn-success btn-icon-split">
+            <span class="icon text-white"><i class="fas fa-check"></i></span>
+            <input type="submit" class="text-primary" value="Simpan">
+          </a><br><br>
+
+          Video Terunggah : <br>
+          <video controls width=100% height=100%>
+            <source src="{{ url_video }}" type="video/mp4">
+          </video><br><br>
+          <a style="float: right;" href="{{ url_pdf }}" class="btn btn-dark btn-icon-split">
+            <span class="icon text-white">
+              <i class="fas fa-arrow-down"></i>
+            </span>
+            <span class="text" title="Unduh PDF">PDF Terunggah</span>
+          </a>
+        </p>
+        <a style="float: right;" href="{{ url_for('hapus_materi', nrp=data_dosen['_id'], matkul = mata_kul, pekan = pekan, jenis = 'video') }}" class="btn btn-danger btn-icon-split">
+          <span class="icon text-white">
+            <i class="fas fa-arrow-times"></i>
+          </span>
+          <span class="text" title="Unduh PDF">Hapus Video</span>
+        </a>
+        <a style="float: right;" href="{{ url_for('hapus_materi', nrp=data_dosen['_id'], matkul = mata_kul, pekan = pekan, jenis = 'pdf') }}" class="btn btn-danger btn-icon-split">
+          <span class="icon text-white">
+            <i class="fas fa-arrow-times"></i>
+          </span>
+          <span class="text" title="Unduh PDF">Hapus PDF</span>
+        </a>
+      </form>
+      </div>
+    
+    </div>
+  </div>
+  </div>
+
+          {% endblock %}
+
+  {% block another_JS %}
+  <!-- Page level plugins -->
+  <script src="{{ url_for('static', filename='vendor/chart.js/Chart.min.js') }}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{{ url_for('static', filename='js/demo/chart-area-demo.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/demo/chart-pie-demo.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/demo/chart-bar-demo.js') }}"></script>
+  {% endblock %}

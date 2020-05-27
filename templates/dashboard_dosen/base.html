@@ -30,10 +30,10 @@
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url_for('dosen', nrp = data_dosen['_id']) }}">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+        <div class="sidebar-brand-icon">
+          <i class="fas fa-chalkboard-teacher"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">FIK OCW</div>
       </a>
 
       <!-- Divider -->
@@ -62,19 +62,19 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Addons
+        Menu Mahasiswa :
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="{{ url_for('tugas_terkumpul', nrp=data_dosen['_id']) }}">
           <i class="fas fa-fw fa-folder"></i>
           <span>Tugas Terkumpul</span>
         </a>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="{{ url_for('nilai_mhs', nrp=data_dosen['_id']) }}">
           <i class="fas fa-fw fa-folder"></i>
           <span>Nilai Mahasiswa</span>
         </a>
@@ -118,15 +118,7 @@
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
+                  Profil
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ url_for('keluar') }}" data-toggle="modal" data-target="#logoutModal">

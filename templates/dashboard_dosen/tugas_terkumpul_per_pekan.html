@@ -1,0 +1,29 @@
+{% extends 'dashboard_dosen/base.html' %}
+
+{% block title %}Tugas Terkumpul{% endblock %}
+
+{% block main_content %}
+<a style="float: right;" href="{{ url_for('tugas_terkumpul_permatkul', nrp = data_dosen['_id'], matkul = mata_kul) }}" class="icon d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-arrow-left"></i> Kembali</a><br><br>  
+<!-- Content Row -->
+<div class="row">
+
+  <!-- Grow In Utility -->
+  <div class="col-lg-12">
+
+    <div class="card position-relative">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Tugas Terkumpul {{matkul}} Pertemuan ke {{pekan}}</h6>
+      </div>
+      <div class="card-body">
+        {% for nama, url_unduh in tugas_mhs.items() %}
+        <p style="width: 100%;" class="mb1">{{ nama }}
+        <a href="{{ url_unduh }}"><i class="fas fa-laptop-code" title="Lihat detail"></i></a></p><br>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}
