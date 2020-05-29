@@ -60,7 +60,7 @@ Silahkan fork repositori ini terlebih dahulu setelah itu kalian bebas mengembang
 ## :memo: Status proyek
 - [x] Login
 - [x] Fitur-fitur untuk admin
-- [ ] Fitur-fitur untuk dosen
-- [ ] Fitur-fitur untuk mahasiswa
+- [x] Fitur-fitur untuk dosen
+- [x] Fitur-fitur untuk mahasiswa
 
 :pushpin: <a href="http://fik-ocw.herokuapp.com/" target=blank>Demo langsung</a>
