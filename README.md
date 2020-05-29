@@ -16,6 +16,10 @@
   Web ini menggunakan Flask sebagai Framework yang ditulis dalam bahasa pemrograman Python dan dengan MongoDB sebagai database. Ada 3 tipe User dalam program ini, yaitu Admin, Dosen, dan Mahasiswa.
 </p>
 
+<p align="center">
+  <img src="https://imgur.com/mpRwEEU">
+</p>
+
 > Berisi seluruh kodingan proyek akhir pemrgraman framework  :computer: 
 > Proyek ini merupakan pembuatan E-Learning sederhana yang dikhususkan untuk mahasiswa Fakultas Ilmu Komputer UPN "VETERAN" Jawa Timur :school: 
 
