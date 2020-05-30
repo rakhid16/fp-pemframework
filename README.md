@@ -17,7 +17,7 @@
 </p>
 
 <p align="center">
-  <img src="https://imgur.com/mpRwEEU">
+  <img src="https://i.imgur.com/mpRwEEU.jpg">
 </p>
 
 > Berisi seluruh kodingan proyek akhir pemrgraman framework  :computer: 
