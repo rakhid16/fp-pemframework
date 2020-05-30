@@ -1,0 +1,129 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}{{ keterangan }}{% endblock %}
+
+{% block another_CSS %}
+<!-- Custom styles for this page -->
+<link href="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block main_content %}
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-2 text-gray-800">{{ keterangan }}</h1><br>
+</div>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+
+
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>{{ id }}</th>
+            <th>Nama</th>
+            <th>Prodi</th>
+            <th>Email</th>
+            <th>Opsi</th>
+          </tr>
+        </thead>
+        <tbody> {% for baris in data %}
+          <tr>
+            <td>{{ baris[0] }}</td>
+            <td>{{ baris[1] }}</td>
+            <td>{{ baris[2] }}</td>
+            <td>{{ baris[3] }}</td>
+            <td>
+              <center>
+                <a href="#!" data-toggle="modal" data-target="#EditData{{ baris[0] }}" class="btn btn-success" title="Ubah Data"><i class="far fa-edit"></i></a><br><br>
+                <a href="#!" data-toggle="modal" data-target="#HapusData{{ baris[0] }}" class="btn btn-danger" title="Hapus Data"><i class="far fa-trash-alt"></i></a>
+              </center>
+            </td>
+          </tr>
+          
+          <!-- Delete Modal -->
+          <div class="modal fade" id="HapusData{{ baris[0] }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Jika terhapus tidak dapat dikembalikan lagi</h5>
+                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                
+                <div class="modal-body">
+                  <b>Yakin hapus data ini?</b><br><br>
+                  <p class="text-secondary">
+                    <b>{{ id }}</b><br>{{ baris[0] }}<br><br>
+                    <b>Nama</b><br>{{ baris[1] }}<br><br>
+                    <b>Jurusan</b><br>{{ baris[2] }}<br><br>
+                    <b>Email</b><br>{{ baris[3] }}</p>
+                </div>
+              
+                <div class="modal-footer">
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                  <a href="{{ url_for('hapus', unik = baris[0], peran=baris[3] ) }}" class="btn btn-primary">Hapus</a>
+                </div>
+              
+              </div>
+            </div>
+          </div>
+
+          <!-- Edit Modal -->
+          <div class="modal fade" id="EditData{{ baris[0] }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ubah data yang memiliki {{ id }} {{ baris.0 }}</h5>
+                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+
+              <form action="{{ url_for('edit', unik = baris[0], peran=baris[3]) }}" method="POST">
+                <div class="modal-body">             
+                  NPM/NRP<br><input readonly type="text" name="id" value="{{ baris[0] }}"><br><br>
+                  Nama<br><input type="text" name="nama" placeholder="Masukkan Nama" value="{{ baris[1] }}" required><br><br>
+                  
+                  <label>Jurusan</label><br>
+                  <select name="prodi" >
+                    <option>{{ baris[2] }}</option>
+                  </select><br><br>
+          
+                  Surel<br><input type="email" name="email" value="{{ baris[3] }}" required><br><br>
+                  Sandi lama<br><input readonly type="text" value="{{ baris[4] }}" required><br><br>
+                  Sandi baru<br><input type="text" name="sandi_baru"><br><br>
+                </div>
+              
+                <div class="modal-footer">
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                  <input type="submit" class="btn btn-primary" value="Simpan">
+                </div>
+              </form>
+              
+              </div>
+            </div>
+          </div> {% endfor %}
+        
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block another_JS %}
+<!-- Page level plugins -->
+<script src="{{ url_for('static', filename='vendor/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+<!-- Page level custom scripts -->
+<script src="{{ url_for('static', filename='js/demo/datatables-demo.js') }}"></script>
+<script src="{{ url_for('static', filename='js/sandi_mhs_dosen.js') }}"></script>
+{% endblock %}

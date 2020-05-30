@@ -1,0 +1,25 @@
+{% extends 'mhs/base.html' %}
+{% block title %}Mata Kuliah Terambil{% endblock %}
+
+{% block main_content %}
+
+<div class="row">
+  <div class="col-lg-12">
+
+    <div class="card position-relative">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Mata Kuliah yang Terambil</h6>
+      </div>
+
+      <div class="card-body">
+        {% for matkul in matkul_terambil %}
+        <a href="{{ url_for('mata_kuliah_mhs', npm = data_mhs['_id'], matkul = matkul) }}" class="mb3" title="Lihat detail">{{ matkul }}</a>
+        <a style="float: right;" href="{{ url_for('hapus_mata_kuliah_mhs', npm = data_mhs['_id'], matkul = matkul) }}" title="Tanggalkan mata kuliah"><i class="far fa-trash-alt"></i></a><br>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

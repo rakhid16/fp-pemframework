@@ -1,0 +1,73 @@
+{% extends 'mhs/base.html' %}
+{% block title %}Nilai Mata Kuliah{% endblock %}
+
+{% block another_CSS %}
+<link href="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block main_content %}
+
+<div class="row">
+  <div class="col-lg-12">
+
+    <div class="card position-relative">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Nilai Mata Kuliah</h6>
+      </div>
+
+      <div class="card-body">
+        {% for matkul in data_mhs['Mata kuliah'] %}
+        <a>{{ matkul }}</a>
+        <a style="float: right;" data-toggle="modal" data-target="#au{{ data_mhs['Mata kuliah'][matkul][0] }}" title="Lihat detail"><i class="fas fa-search"></i></a><br>
+
+        <div class="modal fade" id="au{{ data_mhs['Mata kuliah'][matkul][0] }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+  
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nilai Mata Kuliah {{ matkul }}</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+  
+              <div class="modal-body">
+                Pekan 1 : <input width="50s%" readonly type="text" value="{{ data_mhs['Mata kuliah'][matkul][0] }}"><br><br>
+                Pekan 2 : <input width="50s%" readonly type="text" value="{{ data_mhs['Mata kuliah'][matkul][1] }}"><br><br>
+                Pekan 3 : <input width="50s%" readonly type="text" value="{{ data_mhs['Mata kuliah'][matkul][2] }}"><br><br>
+                Pekan 4 : <input width="50s%" readonly type="text" value="{{ data_mhs['Mata kuliah'][matkul][3] }}"><br><br>
+                Pekan 5 : <input width="50s%" readonly type="text" value="{{ data_mhs['Mata kuliah'][matkul][4] }}"><br><br>
+                Pekan 6 : <input width="50s%" readonly type="text" value="{{ data_mhs['Mata kuliah'][matkul][5] }}"><br><br>
+                Pekan 7 : <input width="50s%" readonly type="text" value="{{ data_mhs['Mata kuliah'][matkul][6] }}"><br><br>
+                NIlai UTS : <input width="50s%" readonly type="text" value="{{ data_mhs['Mata kuliah'][matkul][7] }}"><br><br>
+                Pekan 9 : <input width="50s%" readonly type="text" value="{{ data_mhs['Mata kuliah'][matkul][8] }}"><br><br>
+                Pekan 10 : <input width="50s%" readonly type="text" value="{{ data_mhs['Mata kuliah'][matkul][9] }}"><br><br>
+                Pekan 11 : <input width="50s%" readonly type="text" value="{{ data_mhs['Mata kuliah'][matkul][10] }}"><br><br>
+                Pekan 12 : <input width="50s%" readonly type="text" value="{{ data_mhs['Mata kuliah'][matkul][11] }}"><br><br>
+                Pekan 13 : <input width="50s%" readonly type="text" value="{{ data_mhs['Mata kuliah'][matkul][12] }}"><br><br>
+                Pekan 14 : <input width="50s%" readonly type="text" value="{{ data_mhs['Mata kuliah'][matkul][13] }}"><br><br>
+                Pekan 15 : <input width="50s%" readonly type="text" value="{{ data_mhs['Mata kuliah'][matkul][14] }}"><br><br>
+                Nilai UAS : <input width="50s%" readonly type="text" value="{{ data_mhs['Mata kuliah'][matkul][15] }}">
+              </div>
+  
+              <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Tutup</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block another_JS %}
+<script src="{{ url_for('static', filename='vendor/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/demo/datatables-demo.js') }}"></script>
+{% endblock %}

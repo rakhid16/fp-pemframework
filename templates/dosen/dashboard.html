@@ -1,0 +1,21 @@
+{% extends 'dosen/base.html' %}
+
+{% block title %}Dashboard Dosen{% endblock %}
+
+{% block main_content %}
+
+<div class="row">
+  <div class="col-xl-12 col-lg-7">
+    <div class="card shadow mb-4">
+      <div class="card-body"><center>
+        <h4 class="m-0 font-weight-bold text-primary">Selamat Datang {{ data_dosen['nama'].split(' ')[0] }}!</h4><br>
+        <img style=" width: 80%; height: auto;" src="{{url_for('static', filename='img/teach.svg') }}" ></center>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block another_JS %}
+<script src="{{ url_for('static', filename='vendor/chart.js/Chart.min.js') }}"></script>
+{% endblock %}

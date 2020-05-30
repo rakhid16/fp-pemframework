@@ -1,0 +1,76 @@
+{% extends 'dosen/base.html' %}
+
+{% block title %}Nilai Mahasiswa Per Mata Kuliah{% endblock %}
+
+{% block main_content %}
+<a style="float: right;" href="{{ url_for('nilai_mhs', nrp = data_dosen['_id'], matkul = mata_kul) }}" class="icon d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-arrow-left"></i> Kembali</a><br><br>
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Nilai Mahasiswa Mata Kuliah {{ mata_kul }}</h6>
+      </div>
+      {% for nama, nilai in daftar_mhs.items() %}
+      <div class="card-body">
+        <a class="mb3" href="#" data-toggle="modal" data-target="#au{{nilai[0]}}">{{ nama.split('!')[0] }}</a>
+      </div>
+
+      <div class="modal fade" id="au{{nilai[0]}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Tambah/Ubah Nilai Mahasiswa</h5>
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+
+            <form method="POST" action="{{ url_for('nilai_mhs_permatkul_ubah', nrp=data_dosen['_id'], matkul=mata_kul, npm=nama.split('!')[1]) }}">
+              <div class="modal-body">
+                Pekan 1 <input type="text" value="{{ nilai[0] }}" name="pekan_0"><br><br>
+                Pekan 2 <input type="text" value="{{ nilai[1] }}" name="pekan_1"><br><br>
+                Pekan 3 <input type="text" value="{{ nilai[2] }}" name="pekan_2"><br><br>
+                Pekan 4 <input type="text" value="{{ nilai[3] }}" name="pekan_3"><br><br>
+                Pekan 5 <input type="text" value="{{ nilai[4] }}" name="pekan_4"><br><br>
+                Pekan 6 <input type="text" value="{{ nilai[5] }}" name="pekan_5"><br><br>
+                Pekan 7 <input type="text" value="{{ nilai[6] }}" name="pekan_6"><br><br>
+                NIlai UTS <input type="text" value="{{ nilai[7] }}" name="pekan_7"><br><br>
+                Pekan 9 <input type="text" value="{{ nilai[8] }}" name="pekan_8"><br><br>
+                Pekan 10 <input type="text" value="{{ nilai[9] }}" name="pekan_9"><br><br>
+                Pekan 11 <input type="text" value="{{ nilai[10] }}" name="pekan_10"><br><br>
+                Pekan 12 <input type="text" value="{{ nilai[11] }}" name="pekan_11"><br><br>
+                Pekan 13 <input type="text" value="{{ nilai[12] }}" name="pekan_12"><br><br>
+                Pekan 14 <input type="text" value="{{ nilai[13] }}" name="pekan_13"><br><br>
+                Pekan 15 <input type="text" value="{{ nilai[14] }}" name="pekan_14"><br><br>
+                Nilai UAS <input type="text" value="{{ nilai[15] }}" name="pekan_15">
+              </div>
+
+              <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
+                <input type="submit" class="btn btn-primary" value="Simpan Nilai">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>  
+  </div>
+</div>
+
+ 
+
+{% endblock %}
+
+  {% block another_JS %}
+  <!-- Page level plugins -->
+  <script src="{{ url_for('static', filename='vendor/chart.js/Chart.min.js') }}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{{ url_for('static', filename='js/demo/chart-area-demo.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/demo/chart-pie-demo.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/demo/chart-bar-demo.js') }}"></script>
+  {% endblock %}

@@ -1,5 +1,5 @@
 # BUILT IN LIBARIES
-import datetime
+from datetime import date
 
 # FRAMEWORKS
 from pymongo import MongoClient
@@ -73,7 +73,7 @@ def login():
     elif col_mhs.find_one({"email" : request.form['usrnm'], "sandi" : request.form['pwd']}) is not None:
       session['akun'] = request.form['usrnm']
       npm = col_mhs.find_one({"email": request.form['usrnm'] })["_id"]
-      return redirect(url_for('dashboard', npm = npm))
+      return redirect(url_for('mahasiswa', npm = npm))
     
     # PROSES AUTENTIKASI AKUN DOSEN
     elif col_dosen.find_one({"email" : request.form['usrnm'], "sandi" : request.form['pwd']}) is not None:
@@ -92,14 +92,7 @@ def login():
 def forgot_pwd():
   return render_template("auth/forgot-password.html")
 
-'''
-SEBELUM USER MENGAKSES LAMAN DASHBOARD MASING-MASING
-"akun" YANG ADA PADA SESSION DICEK TERLEBIH DAHULU
-MELALUI BARIS KODE if "akun" in session
-APABILA SUDAH LOGIN MAKA USER TERSEBUT DAPAT MENGAKSES DASHBOARD
-JIKA TIDAK MAKA WEBSITE AKAN MENGARAHKAN KE LAMAN LOGIN
-MELALUI BARIS KODE return render_template("auth/login.html"....
-'''
+# =================================================================================================================================
 
 # HALAMAN DASHBOARD MENU ADMINISTRATOR
 @app.route('/admin', methods=["POST", "GET"])
@@ -138,13 +131,13 @@ def admin():
     
     # JIKA NPM/NRP SUDAH ADA PADA DATABASE bug
     elif request.method == "POST" and col_dosen.find_one({"_id" : request.form['id']}) is not None and col_mhs.find_one({"_id" : request.form['id']}) is not None :
-      return render_template("dashboard_admin/dashboard.html",
+      return render_template("admin/dashboard.html",
                             email = session['akun'],
                             jumlah = jumlah, sandi = sandi,
                             pesan = "NRP/NPM ini sudah ada")
     
     # TAMPILAN DEFAULT DARI .html YANG TERENDER
-    return render_template("dashboard_admin/dashboard.html",
+    return render_template("admin/dashboard.html",
                           email = session['akun'],
                           jumlah = jumlah, sandi = sandi)
   else:
@@ -166,7 +159,7 @@ def daftar_dosen(prodi):
     # NILAI PADA VARIABEL sandi, keterangan, email, data, dan id
     # MENJADI PARAMETER FUNGSI render_template NANTI AKAN DITAMPILKAN
     # PADA tables.html YANG TERENDER
-    return render_template("dashboard_admin/tables.html",
+    return render_template("admin/tabel.html",
                           sandi = col_admin.find_one({"email" : session['akun']})['sandi'],
                           keterangan = "Daftar Data Dosen",
                           email = session['akun'],
@@ -187,7 +180,7 @@ def daftar_mhs(prodi):
       data.append(list(akun.values()))
       data[i].append(i+1)
 
-    return render_template("dashboard_admin/tables.html",
+    return render_template("admin/tabel.html",
                           sandi = col_admin.find_one({"email" : session['akun']})['sandi'],
                           keterangan = "Daftar Data Mahasiswa",
                           email = session['akun'],
@@ -228,19 +221,17 @@ def edit(peran, unik):
     # EDIT KATA SANDI ADMIN
     if "@admin.fik_ocw" in peran:
       col_admin.update_one({"email" : unik},
-                           {"$set" : {"sandi" : request.form['sandi_baru_2']}})
+                           {"$set" : {"sandi" : request.form['sandi']}})
       return redirect(url_for('admin'))
 
     # EDIT AKUN DOSEN
     elif "@student.upnjatim" not in peran:
-      #data_dosen = col_dosen.find_one({"_id" : unik})
-
       col_dosen.update_one({"_id" : unik},
                            {"$set" : {"nama" : request.form['nama'],
                                       "email" : request.form['email'],
-                                      "sandi" : request.form['sandi_baru']}})
+                                      "sandi" : request.form['sandi']}})
 
-      return redirect(url_for('admin'))
+      return redirect(url_for('dosen', nrp = request.form['id']))
 
     # EDIT AKUN MAHASISWA
     elif "@student.upnjatim" in peran:
@@ -248,20 +239,21 @@ def edit(peran, unik):
                          {"$set" : {"nama" : request.form['nama'],
                                     "prodi" : request.form['prodi'],
                                     "email" : request.form['email'],
-                                    "sandi" : request.form['sandi_baru']}})
-      return redirect(url_for('admin'))
+                                    "sandi" : request.form['sandi']}})
+      return redirect(url_for('mahasiswa', npm = request.form['id']))
 
-    # KARENA TIDAK MENGEMBALIKAN NILAI KEMBALIAN
     pass
   else:
     return redirect(url_for('login'))
+
+# =================================================================================================================================
 
 # HALAMAN DASHBOARD MENU DOSEN
 @app.route('/dosen/<nrp>')
 def dosen(nrp):
   if "akun" in session :
     data_dosen = col_dosen.find_one({"_id": nrp })
-    return render_template("dashboard_dosen/dashboard.html", data_dosen = data_dosen)
+    return render_template("dosen/dashboard.html", data_dosen = data_dosen)
   else:
     return redirect(url_for('login'))
 
@@ -279,14 +271,14 @@ def tambah_mata_kuliah(nrp):
     # TAMBAH MATA KULIAH BARU
     if request.method == "POST":
       # UNTUK MENENTUKAN SEMESTER PERKULIAHAN
-      if datetime.date.today() < datetime.date(datetime.date.today().year, 7, 1):
+      if date.today() < date(date.today().year, 7, 1):
         smt = "GENAP"
       else:
         smt = "GANJIL"
-      tahun = str(datetime.date.today().year)
+      tahun = str(date.today().year)
       
       if str(request.form['nama_mata_kuliah'] + " " + request.form['kelas_paralel']+ " " + tahun + " " + smt) in daftar_matkul:
-        return render_template("dashboard_dosen/tambah_matkul.html",
+        return render_template("dosen/tambah_matkul.html",
                                data_dosen = data_dosen, pesan = "Mata kuliah tersebut sudah ada!",
                                daftar_matkul = daftar_matkul)
       
@@ -299,7 +291,7 @@ def tambah_mata_kuliah(nrp):
 
         return redirect(url_for('tambah_mata_kuliah', nrp = data_dosen['_id']))
 
-    return render_template("dashboard_dosen/tambah_matkul.html",
+    return render_template("dosen/tambah_matkul.html",
                            data_dosen = data_dosen,
                            daftar_matkul = daftar_matkul)
   else:
@@ -320,11 +312,11 @@ def hapus_mata_kuliah(nrp, matkul):
     return redirect(url_for('login'))
 
 # LAMAN MATA KULIAH
-@app.route('/dosen/<nrp>/<matkul>')#, methhods=['GET', 'POST'])
+@app.route('/dosen/<nrp>/<matkul>')
 def mata_kuliah_dos(nrp, matkul):
   if "akun" in session:
     data_dosen = col_dosen.find_one({"_id": nrp })
-    return render_template("dashboard_dosen/mata_kuliah.html", data_dosen = data_dosen, mata_kul = matkul)
+    return render_template("dosen/mata_kuliah.html", data_dosen = data_dosen, mata_kul = matkul)
   else :
     return redirect(url_for('login'))
 
@@ -336,8 +328,7 @@ def tambah_edit_materi(nrp, matkul, pekan):
     
     materi = [ i.name.split('/')[5] for i in storage.list_files() if data_dosen['_id'] and matkul+ '/Materi/Pekan ' + pekan in i.name ]
 
-    video = None
-    pdf = None
+    pdf, video = '', ''
 
     if not materi == False:
       if "video.mp4" in materi:
@@ -355,10 +346,9 @@ def tambah_edit_materi(nrp, matkul, pekan):
      
       return redirect(url_for('tambah_edit_materi', nrp=data_dosen['_id'], matkul=matkul, pekan = pekan))
 
-    return render_template("dashboard_dosen/tambah_edit_materi.html",
+    return render_template("dosen/tambah_edit_materi.html",
                            data_dosen = data_dosen, mata_kul = matkul,
-                           pekan = pekan, url_video = video,
-                           url_pdf = pdf)
+                           pekan = pekan, url_video = video, url_pdf = pdf)
   else :
     return redirect(url_for('login'))
 
@@ -386,7 +376,7 @@ def tambah_edit_tugas(nrp, matkul, pekan):
                data_dosen['Mata kuliah'][matkul]["Pekan " + pekan]['Pukul batas pengumpulan'].split(':')[1],
                data_dosen['Mata kuliah'][matkul]["Pekan " + pekan]['Deskripsi Tugas']]
     else:
-      isian = ["Masukkan Judul", None, None, None, "Tulis deskripsi"]
+      isian = ["Masukkan Judul", '', '', '', "Tulis deskripsi"]
 
     if request.method == "POST":
       tugas_pekan = {"Tugas pekan ke" : pekan,
@@ -424,7 +414,7 @@ def tambah_edit_tugas(nrp, matkul, pekan):
 
       return redirect('/dosen/'+ data_dosen['_id'] +'/'+ matkul+'/tambah-tugas/'+ pekan)
 
-    return render_template("dashboard_dosen/tambah_edit_tugas.html",
+    return render_template("dosen/tambah_edit_tugas.html",
                            data_dosen = data_dosen, mata_kul = matkul,
                            pekan = pekan, isian = isian)
   else:
@@ -450,7 +440,7 @@ def hapus_tugas_dos(nrp, matkul, pekan):
 def mata_materi_dos(nrp, matkul, pekan):
   if "akun" in session:
     data_dosen = col_dosen.find_one({"_id": nrp })
-    return render_template("dashboard_dosen/mata_kuliah.html", data_dosen = data_dosen, mata_kul = matkul)
+    return render_template("dosen/mata_kuliah.html", data_dosen = data_dosen, mata_kul = matkul)
   else :
     return redirect(url_for('login'))
 
@@ -464,7 +454,7 @@ def tugas_terkumpul(nrp):
     daftar_matkul = list(a)
     del a
 
-    return render_template("dashboard_dosen/tugas_terkumpul.html", data_dosen = data_dosen, daftar_matkul = daftar_matkul) 
+    return render_template("dosen/tugas_terkumpul.html", data_dosen = data_dosen, daftar_matkul = daftar_matkul) 
   else:
     return redirect(url_for('login'))
 
@@ -474,7 +464,7 @@ def tugas_terkumpul_permatkul(nrp, matkul):
     data_dosen = col_dosen.find_one({"_id": nrp })
 
 
-    return render_template("dashboard_dosen/tugas_terkumpul_permatkul.html", data_dosen = data_dosen, mata_kul = matkul)
+    return render_template("dosen/tugas_terkumpul_permatkul.html", data_dosen = data_dosen, mata_kul = matkul)
   else:
     return redirect(url_for('login'))
 
@@ -488,7 +478,7 @@ def tugas_terkumpul_per_pekan(nrp, matkul, pekan):
 
     tugas_mhs = dict(zip(daftar_mhs,url_unduh_tugas_mhs))
     
-    return render_template("dashboard_dosen/tugas_terkumpul_per_pekan.html",
+    return render_template("dosen/tugas_terkumpul_per_pekan.html",
                           data_dosen = data_dosen, mata_kul = matkul,
                           matkul= matkul, pekan = pekan,
                           tugas_mhs = tugas_mhs)
@@ -505,7 +495,7 @@ def nilai_mhs(nrp):
     daftar_matkul = list(a)
     del a
 
-    return render_template("dashboard_dosen/nilai_mhs.html", data_dosen = data_dosen, daftar_matkul = daftar_matkul)
+    return render_template("dosen/nilai_mhs.html", data_dosen = data_dosen, daftar_matkul = daftar_matkul)
   else:
     return redirect(url_for('login'))
 
@@ -515,13 +505,12 @@ def nilai_mhs_permatkul(nrp, matkul):
     data_dosen = col_dosen.find_one({"_id": nrp })
 
     daftar_mhs = [ i for i in col_mhs.find({'prodi' : data_dosen['prodi']}) if 'Mata kuliah' in i]
-    daftar_mhs = [i for i in daftar_mhs if matkul in i['Mata kuliah']]
+    nama = [i['nama']+'!'+i['_id'] for i in daftar_mhs if matkul in i['Mata kuliah']]
+    nilai = [i['Mata kuliah'][matkul] for i in daftar_mhs if matkul in i['Mata kuliah']]
+    
+    daftar_mhs = dict(zip(nama, nilai))
 
-    if request.method == 'POST':
-      
-      return redirect(url_for('nilai_mhs_permatkul', nrp=data_dosen['_id'], mata_kul=matkul))
-
-    return render_template("dashboard_dosen/nilai_mhs_permatkul.html", data_dosen = data_dosen, mata_kul = matkul, daftar_mhs = daftar_mhs)
+    return render_template("dosen/nilai_mhs_permatkul.html", data_dosen = data_dosen, mata_kul = matkul, daftar_mhs = daftar_mhs)
   else:
     return redirect(url_for('login'))
 
@@ -530,40 +519,29 @@ def nilai_mhs_permatkul_ubah(nrp, matkul, npm):
   if "akun" in session and request.method=="POST":
     data_dosen = col_dosen.find_one({"_id": nrp })
     document = col_mhs.find_one({'_id' : npm})
-    document['Mata kuliah'][matkul] = [request.form['pekan_0'],
-                                       request.form['pekan_1'],
-                                       request.form['pekan_2'],
-                                       request.form['pekan_3'],
-                                       request.form['pekan_4'],
-                                       request.form['pekan_5'],
-                                       request.form['pekan_6'],
-                                       request.form['pekan_7'],
-                                       request.form['pekan_8'],
-                                       request.form['pekan_9'],
-                                       request.form['pekan_10'],
-                                       request.form['pekan_11'],
-                                       request.form['pekan_12'],
-                                       request.form['pekan_13'],
-                                       request.form['pekan_14'],
-                                       request.form['pekan_15']]
+    
+    document['Mata kuliah'][matkul] = [request.form['pekan_0'], request.form['pekan_1'], request.form['pekan_2'], request.form['pekan_3'],
+                                       request.form['pekan_4'], request.form['pekan_5'], request.form['pekan_6'], request.form['pekan_7'],
+                                       request.form['pekan_8'], request.form['pekan_9'], request.form['pekan_10'], request.form['pekan_11'],
+                                       request.form['pekan_12'], request.form['pekan_13'], request.form['pekan_14'], request.form['pekan_15']]
 
     col_mhs.update_one({'_id':npm}, {'$set':document})
     return redirect(url_for('nilai_mhs_permatkul', nrp=data_dosen['_id'], matkul=matkul))
   else:
     return redirect(url_for('login'))
 
-# ------------------------------------------------------------------------------------------------------------------------------------------
+# =================================================================================================================================
 
 # HALAMAN DASHBOARD MENU MAHASISWA
-@app.route('/dashboard/<npm>')
-def dashboard(npm):
+@app.route('/mhs/<npm>')
+def mahasiswa(npm):
   if "akun" in session:
     data_mhs = col_mhs.find_one({"_id" : npm})
-    return render_template("dashboard/dashboard.html", data_mhs = data_mhs)
+    return render_template("mhs/dashboard.html", data_mhs = data_mhs)
   else:
     return redirect(url_for('login'))
 
-@app.route('/dashboard/<npm>/ambil-mata-kuliah/<mata_kul>', methods=['GET', 'POST'])
+@app.route('/mhs/<npm>/ambil-mata-kuliah/<mata_kul>', methods=['GET', 'POST'])
 def ambil_matkul(npm, mata_kul):
   if "akun" in session:
     data_mhs = col_mhs.find_one({"_id" : npm})
@@ -584,13 +562,13 @@ def ambil_matkul(npm, mata_kul):
         document['Mata kuliah'][mata_kul] = [0 for i in range(16)]
         col_mhs.update_one({'_id': npm}, {"$set": document})
 
-      return redirect(url_for('ambil_matkul', npm = data_mhs['_id'], mata_kul = 'baru'))
+      return redirect(url_for('matkul_terambil', npm = data_mhs['_id']))
 
-    return render_template("dashboard/cards.html", data_mhs = data_mhs, mata_kuliah = daftar_matkul)
+    return render_template("mhs/ambil_matkul.html", data_mhs = data_mhs, mata_kuliah = daftar_matkul)
   else:
     return redirect(url_for('login'))
 
-@app.route('/dashboard/<npm>/mata-kuliah-terambil')
+@app.route('/mhs/<npm>/mata-kuliah-terambil')
 def matkul_terambil(npm):
   if "akun" in session:
     data_mhs = col_mhs.find_one({"_id" : npm})
@@ -601,19 +579,19 @@ def matkul_terambil(npm):
       document = col_mhs.find_one({"_id" : npm})
       document = document['Mata kuliah'].keys()
 
-    return render_template("dashboard/utilities-animation.html", data_mhs = data_mhs, matkul_terambil= document)
+    return render_template("mhs/matkul_terambil.html", data_mhs = data_mhs, matkul_terambil= document)
   else:
     return redirect(url_for('login'))
 
-@app.route('/dashboard/<npm>/<matkul>')
+@app.route('/mhs/<npm>/<matkul>')
 def mata_kuliah_mhs(npm, matkul):
   if "akun" in session:
     data_mhs = col_mhs.find_one({"_id" : npm})
-    return render_template("dashboard/mata_kuliah.html", data_mhs = data_mhs, mata_kul = matkul)
+    return render_template("mhs/mata_kuliah.html", data_mhs = data_mhs, mata_kul = matkul)
   else:
     return redirect(url_for('login'))
 
-@app.route('/dashboard/<npm>/<matkul>/hapus')
+@app.route('/mhs/<npm>/<matkul>/hapus')
 def hapus_mata_kuliah_mhs(npm, matkul):
   if "akun" in session:
     data_mhs = col_mhs.find_one({"_id" : npm})
@@ -624,57 +602,59 @@ def hapus_mata_kuliah_mhs(npm, matkul):
   else:
     return redirect(url_for('login'))
 
-@app.route('/dashboard/<npm>/<matkul>/materi_tugas/<pekan>', methods=['POST', 'GET'])
+@app.route('/mhs/<npm>/<matkul>/materi_tugas/<pekan>', methods=['POST', 'GET'])
 def kerjakan_tugas(npm, matkul, pekan):
   if "akun" in session:
     data_mhs = col_mhs.find_one({"_id" : npm})
-    files = [ i.name for i in storage.list_files() if matkul in i.name and "Pekan "+pekan in i.name ]
+    files, nrp = [ i.name for i in storage.list_files() if matkul in i.name and "Pekan "+pekan in i.name ], [ i.name for i in storage.list_files() if matkul in i.name]
     tugas_terkumpul = [ i.name.split('/')[5] for i in storage.list_files() if data_mhs['_id'] and matkul+ '/Tugas Terkumpul/Pekan ' + pekan in i.name ]
+    
+    nrp, video, pdf, a = nrp[0].split('/')[1], '', '', ''
 
-    video, pdf, a = None, None, ''
+    try:
+      isian = list(col_dosen.find_one({'_id': nrp})['Mata kuliah'][matkul]['Pekan '+pekan].values())
+    except:
+      isian = ['', '', '', "0:0", '']
 
-    if not files:
-      isian = [None, None, None, "0:0", None]
-    else:
+    if files != []:
       if "dokumen.pdf" in files[0]:
         pdf = storage.child(files[0]).get_url(None)
       if "video.mp4" in files[0] or "video.mp4" in files[1]:
         video = storage.child(files[1]).get_url(None)
-      nrp = files[0].split('/')[1]
-      isian = list(col_dosen.find_one({'_id': nrp})['Mata kuliah'][matkul]['Pekan '+pekan].values())
 
     if tugas_terkumpul != []:
       a = storage.child(data_mhs['prodi']+'/'+nrp+'/'+matkul+'/Tugas Terkumpul/Pekan '+pekan+'/'+data_mhs['_id']+'-'+data_mhs['nama']+'.zip').get_url(None)
-    else:
-      pass
 
     if request.method == "POST":
       storage.child(data_mhs['prodi']+'/'+nrp+'/'+matkul+'/Tugas Terkumpul/Pekan '+pekan+'/'+data_mhs['_id']+'-'+data_mhs['nama']+'.zip').put(request.files['tugas_mhs'])
       return redirect(url_for('kerjakan_tugas', npm = npm, matkul= matkul, pekan=pekan))
 
-    return render_template("dashboard/materi_tugas.html",
-                            data_mhs = data_mhs, pekan = pekan,
-                            url_video = video, url_pdf = pdf, nrp = nrp,
-                            tugas=isian, matkul = matkul, unggahan =a)
+    return render_template("mhs/materi_tugas.html", data_mhs = data_mhs,
+                            pekan = pekan, url_video = video, url_pdf = pdf,
+                            nrp = nrp, tugas = isian, matkul = matkul, unggahan = a)
   else:
     return redirect(url_for('login'))
 
-@app.route('/dashboard/<npm>/<matkul>/hapus_tugas/<nrp>/<pekan>')
-def hapus_tugas_mhs(npm,nrp, matkul, pekan):
+@app.route('/mhs/<npm>/<matkul>/hapus_tugas/<nrp>/<pekan>')
+def hapus_tugas_mhs(npm, nrp, matkul, pekan):
   if "akun" in session:
-    data_mhs = col_mhs.find_one({'_id' : npm})
-    nrp = nrp
 
-    storage.delete(data_mhs['prodi']+'/'+nrp+'/'+matkul+'/Tugas Terkumpul/Pekan '+pekan+'/'+data_mhs['_id']+'-'+data_mhs['nama']+'.zip')
-    return redirect('/dashboard/'+npm+'/'+matkul+'/materi_tugas/'+pekan)
+    if nrp == 'kosong':
+      return redirect('/mhs/'+npm+'/'+matkul+'/materi_tugas/'+pekan)
+    else:
+      data_mhs = col_mhs.find_one({'_id' : npm})
+      nrp = nrp
+      storage.delete(data_mhs['prodi']+'/'+nrp+'/'+matkul+'/Tugas Terkumpul/Pekan '+pekan+'/'+data_mhs['_id']+'-'+data_mhs['nama']+'.zip')
+    
+    return redirect('/mhs/'+npm+'/'+matkul+'/materi_tugas/'+pekan)
   else:
     render_template("auth/login.html", pesan = "Anda harus masuk terlebih dahulu")
 
-@app.route('/dashboard/<npm>/nilai-mata-kuliah')
+@app.route('/mhs/<npm>/nilai-mata-kuliah')
 def nilai_matkul(npm):
   if "akun" in session:
     data_mhs = col_mhs.find_one({"_id" : npm})
-    return render_template("dashboard/tables.html", data_mhs = data_mhs)
+    return render_template("mhs/nilai_matkul.html", data_mhs = data_mhs)
   else:
     return redirect(url_for('login'))
 
@@ -682,7 +662,6 @@ def nilai_matkul(npm):
 def page_not_found(e):
     return render_template('auth/404.html'), 404
 
-# LOG OUT
 @app.route('/keluar')
 def keluar():
   if 'akun' in session :
@@ -690,5 +669,3 @@ def keluar():
     return redirect('/')
   else:
     return redirect('/')
-
-#app.run(debug=True)

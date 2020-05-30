@@ -1,0 +1,22 @@
+{% extends 'dosen/base.html' %}
+{% block title %}Nilai Mahasiswa{% endblock %}
+
+{% block main_content %}
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card position-relative">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Nilai Mahasiswa</h6>
+      </div>
+      <div class="card-body">
+        {% for matkul in daftar_matkul %}
+        <a style="width: 100%;" class="mb3">{{ matkul }}</a>
+        <a style="float: right;" href="{{url_for('nilai_mhs_permatkul', nrp = data_dosen['_id'], matkul=matkul)}}"><i class="fas fa-laptop-code" title="Lihat detail"></i></a><br>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
