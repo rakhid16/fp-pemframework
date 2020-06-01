@@ -1,4 +1,4 @@
-# BUILT IN LIBARIES
+# BUILT IN LIBARY
 from datetime import date, datetime, timedelta
 
 # FRAMEWORKS
