@@ -62,9 +62,9 @@ Silahkan fork repositori ini terlebih dahulu setelah itu kalian bebas mengembang
 :man: Amir Fanani
 
 ## :memo: Status proyek
-- [] Login
-- [] Fitur-fitur untuk admin
-- [] Fitur-fitur untuk dosen
-- [] Fitur-fitur untuk mahasiswa
+- [x] Login
+- [x] Fitur-fitur untuk admin
+- [x] Fitur-fitur untuk dosen
+- [x] Fitur-fitur untuk mahasiswa
 
 :pushpin: <a href="http://fik-ocw.herokuapp.com/" target=blank>Demo langsung</a>
