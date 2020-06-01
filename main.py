@@ -581,14 +581,13 @@ def matkul_terambil(npm):
   if "akun" in session:
     data_mhs = col_mhs.find_one({"_id" : npm})
 
-    document = ['']
-
     # AMBIL NAMA MATA KULIAH TERAMBIL MAHASISWA
     if ("Mata kuliah" in col_mhs.find_one({"_id" : npm})) is True :
       document = col_mhs.find_one({"_id" : npm})
       document = document['Mata kuliah'].keys()
-
-    return render_template("mhs/matkul_terambil.html", data_mhs = data_mhs, matkul_terambil= document)
+      return render_template("mhs/matkul_terambil.html", data_mhs = data_mhs, matkul_terambil= document)
+    else:
+      return render_template("mhs/matkul_terambil.html", data_mhs = data_mhs)
   else:
     return redirect(url_for('login'))
 
