@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <link rel="icon" href="{{ url_for('static', filename='favicon_io/android-chrome-192x192.png' )}}" type="image/gif" sizes="16x16"> 
-    <!-- Required meta tags -->
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="keywords" content="Bootstrap, Landing page, Template, Registration, Landing">
@@ -10,7 +10,6 @@
     <meta name="author" content="Grayrids">
     <title>Fasilkom Open Courseware</title>
 
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/line-icons.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.css') }}">
@@ -20,12 +19,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/nivo-lightbox.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
-
   </head>
   
   <body>
-
-    <!-- Header Section Start -->
     <header id="home" class="hero-area-2">    
       <div class="overlay"></div>
       <nav class="navbar navbar-expand-md bg-inverse fixed-top scrolling-navbar">
@@ -34,24 +30,18 @@
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <i class="lni-menu"></i>
           </button>
+
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto w-100 justify-content-end">
-              <li class="nav-item">
-                <a class="nav-link page-scroll" href="#home">Beranda</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link page-scroll" href="#app-features">Fitur</a>
-              </li>                           
-              <li class="nav-item">
-                <a class="nav-link page-scroll" href="#tim">Tim</a>
-              </li> 
-              <li class="nav-item">
-                <a class="nav-link page-scroll" href="#map-area">Kontak</a>
-              </li> 
+              <li class="nav-item"> <a class="nav-link page-scroll" href="#home">Beranda</a></li>
+              <li class="nav-item"> <a class="nav-link page-scroll" href="#app-features">Fitur</a></li>                           
+              <li class="nav-item"> <a class="nav-link page-scroll" href="#tim">Tim</a></li> 
+              <li class="nav-item"> <a class="nav-link page-scroll" href="#map-area">Kontak</a></li> 
             </ul>
           </div>
         </div>
-      </nav>  
+      </nav>
+
       <div class="container">      
         <div class="row space-100">
           <div class="col-lg-7 col-md-12 col-xs-12">
@@ -71,15 +61,14 @@
         </div> 
       </div>             
     </header>
-    <!-- Header Section End --> 
 
-    <!-- features Section Start -->
     <div id="app-features" class="section">
       <div class="container">
         <div class="section-header">   
           <p class="btn btn-subtitle wow fadeInDown" data-wow-delay="0.2s">Fitur</p>       
           <h2 class="section-title wow fadeIn" data-wow-delay="0.2s">Kualitas Terjamin</h2>
         </div>
+
         <div class="row">
           <div class="col-lg-4 col-md-12 col-xs-12">
             <div class="content-left text-right">
@@ -112,11 +101,13 @@
               </div>
             </div>
           </div>
+
           <div class="col-lg-4 col-md-12 col-xs-12">
             <div class="show-box">
               <img src="{{ url_for('static', filename='img/features/fitur.png') }}" alt="">
             </div>
           </div>
+
           <div class="col-lg-4 col-md-12 col-xs-12">
             <div class="content-right text-left">
               <div class="box-item right">
@@ -148,12 +139,11 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
-    <!-- features Section End -->
 
-    <!-- Features Section Start -->
     <div class="section">
       <div class="container">
         <div class="row">
@@ -172,6 +162,7 @@
             </div>
           </div>
         </div>
+
         <div class="row mt">
           <div class="col-lg-6 col-md-12 col-sm-12">
             <div class="text-wrapper wow fadeInRight" data-wow-delay="0.9s">
@@ -189,10 +180,8 @@
           </div>
         </div>
       </div>
-    </div>
-    <!-- Features Section End -->  
+    </div> 
 
-    <!-- Team section Start -->
     <section id="tim" class="section">
       <div class="container">
         <div class="section-header">   
@@ -216,6 +205,7 @@
               </div>
             </div>
           </div>
+
           <div class="col-lg-3 col-md-6 col-xs-12">
             <div class="single-team wow fadeInUp" data-wow-delay="0.3s">
               <div class="team-thumb">
@@ -232,6 +222,7 @@
               </div>
             </div>
           </div>
+
           <div class="col-lg-3 col-md-6 col-xs-12">
             <div class="single-team wow fadeInUp" data-wow-delay="0.4s">
               <div class="team-thumb">
@@ -248,6 +239,7 @@
               </div>
             </div>
           </div>
+
           <div class="col-lg-3 col-md-6 col-xs-12">
             <div class="single-team wow fadeInUp" data-wow-delay="0.5s">
               <div class="team-thumb">
@@ -267,9 +259,7 @@
         </div>
       </div>
     </section>
-    <!-- Team section End -->
 
-    <!-- Map Section Start -->
     <section id="map-area">
       <div class="container-fluid">
         <div class="row">
@@ -279,9 +269,7 @@
         </div>
       </div>
     </section>
-    <!-- Map Section End -->
 
-    <!-- Contact Section Start -->
     <section id="contact">      
       <div class="contact-form">
         <div class="container">
@@ -335,11 +323,8 @@
         </div>
       </div>        
     </section>
-    <!-- Contact Section End -->
 
-    <!-- Footer Section Start -->
     <footer>
-      <!-- Footer Area Start -->
       <section class="footer-Content">
         <div class="container">
           <div class="row">
@@ -349,6 +334,7 @@
                 <p>Jl Rungkut Madya, Gunung Anyar, SBY<br>Telp : +62 (031) 870 6369<br>Fax. : +62 (031) 870 6372<br>Surel : humas@upnjatim.ac.id<br></p>
               </div>
             </div>
+
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
               <div class="widget">
                 <h3 class="block-title">Unit Pelaksana Teknis</h3>
@@ -361,6 +347,7 @@
                 </ul>
               </div>
             </div>
+
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
               <div class="widget">
                 <h3 class="block-title">Lembaga & Biro</h3>
@@ -372,6 +359,7 @@
                 </ul>
               </div>
             </div>
+
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
               <div class="widget">
                 <h3 class="block-title">Program Studi</h3>
@@ -383,7 +371,7 @@
             </div>
           </div>
         </div>
-        <!-- Copyright Start  -->
+
         <div class="copyright">
           <div class="container">
             <div class="row">
@@ -400,25 +388,17 @@
             </div>
           </div>
         </div>
-      <!-- Copyright End -->
       </section>
-      <!-- Footer area End -->
-      
     </footer>
-    <!-- Footer Section End --> 
 
-    <!-- Go To Top Link -->
     <a href="#" class="back-to-top">
       <i class="lni-chevron-up"></i>
     </a> 
 
-    <!-- Preloader -->
     <div id="preloader">
       <div class="loader" id="loader-1"></div>
     </div>
-    <!-- End Preloader -->
 
-    <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="{{ url_for('static', filename='js/jquery-min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
@@ -435,6 +415,5 @@
     <script src="{{ url_for('static', filename='js/form-validator.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/contact-form-script.js') }}"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-    
   </body>
 </html>

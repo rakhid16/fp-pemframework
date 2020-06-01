@@ -1,15 +1,10 @@
 {% extends 'mhs/base.html' %}
-
 {% block title %}Materi/Tugas {{mata_kul}} Pekan ke {{ pekan }}{% endblock %}
 
 {% block main_content %}
 <a style="float: right;" href="{{ url_for('mata_kuliah_mhs', npm = data_mhs['_id'], matkul = matkul) }}" class="icon d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-arrow-left"></i> Kembali</a><br><br>
-
-
 <div class="row">
   <div class="col-lg-6">
-
-    <!-- Area Chart -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Materi Perkuliahan Pekan - {{ pekan }}</h6>
@@ -29,13 +24,11 @@
           </a>
         </p>
       </div>
-    
-    </div>
 
+    </div>
   </div>
 
   <div class="col-lg-6">
-    <!-- Area Chart -->
   <div class="card shadow mb-4">
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">Tugas Perkuliahan Pekan - {{ pekan }}</h6>
@@ -74,17 +67,13 @@
     </div>
   </div>
   </div>
-
  </div>
 
-          {% endblock %}
+{% endblock %}
 
-  {% block another_JS %}
-  <!-- Page level plugins -->
-  <script src="{{ url_for('static', filename='vendor/chart.js/Chart.min.js') }}"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="{{ url_for('static', filename='js/demo/chart-area-demo.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/demo/chart-pie-demo.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/demo/chart-bar-demo.js') }}"></script>
-  {% endblock %}
+{% block another_JS %}
+<script src="{{ url_for('static', filename='vendor/chart.js/Chart.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/demo/chart-area-demo.js') }}"></script>
+<script src="{{ url_for('static', filename='js/demo/chart-pie-demo.js') }}"></script>
+<script src="{{ url_for('static', filename='js/demo/chart-bar-demo.js') }}"></script>
+{% endblock %}

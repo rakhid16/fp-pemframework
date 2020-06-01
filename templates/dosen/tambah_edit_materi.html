@@ -18,7 +18,7 @@
         <form action="{{ url_for('tambah_edit_materi', nrp = data_dosen['_id'], matkul = mata_kul, pekan = pekan) }}" method="POST" enctype="multipart/form-data">
         <p>
           Unggah Materi Video<br><input style="width:100%" type="file" name="materi_video" accept="video/*"><br><br>
-          Unggah Materi PDF/ZIP<br><input style="width:100%" type="file" name="materi_pdf" accept=".pdf"><br><br>
+          Unggah Materi PDF<br><input style="width:100%" type="file" name="materi_pdf" accept=".pdf"><br><br>
           
           <a class="btn btn-success btn-icon-split">
             <span class="icon text-white"><i class="fas fa-check"></i></span>
@@ -35,18 +35,18 @@
             </span>
             <span class="text" title="Unduh PDF">PDF Terunggah</span>
           </a>
-        </p>
-        <a style="float: right;" href="{{ url_for('hapus_materi', nrp=data_dosen['_id'], matkul = mata_kul, pekan = pekan, jenis = 'video') }}" class="btn btn-danger btn-icon-split">
+        </p><br><br><br>
+        <a style="float: left;" href="{{ url_for('hapus_materi', nrp=data_dosen['_id'], matkul = mata_kul, pekan = pekan, jenis = 'pdf') }}" class="btn btn-danger btn-icon-split">
           <span class="icon text-white">
-            <i class="fas fa-arrow-times"></i>
-          </span>
-          <span class="text" title="Unduh PDF">Hapus Video</span>
-        </a>
-        <a style="float: right;" href="{{ url_for('hapus_materi', nrp=data_dosen['_id'], matkul = mata_kul, pekan = pekan, jenis = 'pdf') }}" class="btn btn-danger btn-icon-split">
-          <span class="icon text-white">
-            <i class="fas fa-arrow-times"></i>
+            <i class="fas fa-trash"></i>
           </span>
           <span class="text" title="Unduh PDF">Hapus PDF</span>
+        </a><br><br>
+        <a style="float: left;" href="{{ url_for('hapus_materi', nrp=data_dosen['_id'], matkul = mata_kul, pekan = pekan, jenis = 'video') }}" class="btn btn-danger btn-icon-split">
+          <span class="icon text-white">
+            <i class="fas fa-trash"></i>
+          </span>
+          <span class="text" title="Unduh PDF">Hapus Video</span>
         </a>
       </form>
       </div>

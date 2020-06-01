@@ -18,9 +18,9 @@
       <div class="card-body">
         {% for matkul in data_mhs['Mata kuliah'] %}
         <a>{{ matkul }}</a>
-        <a style="float: right;" data-toggle="modal" data-target="#au{{ data_mhs['Mata kuliah'][matkul][0] }}" title="Lihat detail"><i class="fas fa-search"></i></a><br>
+        <a style="float: right;" data-toggle="modal" data-target="#au{{ matkul[0] }}" title="Lihat detail"><i class="fas fa-search"></i></a><br>
 
-        <div class="modal fade" id="au{{ data_mhs['Mata kuliah'][matkul][0] }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="au{{ matkul[0] }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
   
