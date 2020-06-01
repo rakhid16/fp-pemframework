@@ -195,7 +195,7 @@
           </button>
         </div>
 
-      <form onsubmit="return Cek_Sandi()" action="{{ url_for('edit', unik = data_dosen['_id'], peran=data_dosen['email']) }}" method="POST">
+      <form onsubmit="return Cek_Sandi()" action="{{ url_for('edit_dosen_mhs', unik = data_dosen['_id'], peran=data_dosen['email']) }}" method="POST">
         <div class="modal-body">
           NRP<br><input readonly type="text" name="id" value="{{ data_dosen['_id'] }}"><br><br>
           Nama<br><input type="text" readonly name="nama" value="{{ data_dosen['nama'] }}"><br><br>

@@ -82,7 +82,7 @@
               <form action="{{ url_for('edit', unik = baris[0], peran=baris[3]) }}" method="POST">
                 <div class="modal-body">             
                   NPM/NRP<br><input readonly type="text" name="id" value="{{ baris[0] }}"><br><br>
-                  Nama<br><input type="text" name="nama" placeholder="Masukkan Nama" value="{{ baris[1] }}" required><br><br>
+                  Nama<br><input readonly type="text" name="nama" placeholder="Masukkan Nama" value="{{ baris[1] }}" required><br><br>
                   
                   <label>Jurusan</label><br>
                   <select name="prodi" >
@@ -91,7 +91,7 @@
           
                   Surel<br><input type="email" name="email" value="{{ baris[3] }}" required><br><br>
                   Sandi lama<br><input readonly type="text" value="{{ baris[4] }}" required><br><br>
-                  Sandi baru<br><input type="text" name="sandi_baru"><br><br>
+                  Sandi baru<br><input type="text" name="sandi"><br><br>
                 </div>
               
                 <div class="modal-footer">

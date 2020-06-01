@@ -201,7 +201,7 @@
           </button>
         </div>
 
-      <form onsubmit="return Cek_Sandi()" action="{{ url_for('edit', unik = data_mhs['_id'], peran=data_mhs['email']) }}" method="POST">
+      <form onsubmit="return Cek_Sandi()" action="{{ url_for('edit_dosen_mhs', unik = data_mhs['_id'], peran=data_mhs['email']) }}" method="POST">
         <div class="modal-body">
           NPM<br><input readonly type="text" value="{{ data_mhs['_id'] }}" name="id"><br><br>
           Nama<br><input type="text" readonly value="{{ data_mhs['nama'] }}" name="nama"><br><br>

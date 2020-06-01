@@ -202,27 +202,22 @@ def edit(peran, unik):
   if "akun" in session and request.method == "POST":
     # EDIT KATA SANDI ADMIN
     if "@admin.fik_ocw" in peran:
-      col_admin.update_one({"email" : unik}, {"$set" : {"sandi" : request.form['sandi']}})
+      col_admin.update_one({"email" : unik}, {"$set" : {"sandi" : request.form['sandi2']}})
       return redirect(url_for('admin'))
 
     # EDIT DATA DOSEN
     elif "@student.upnjatim" not in peran:
       col_dosen.update_one({"_id" : unik},
-                           {"$set" : {"nama" : request.form['nama'],
-                                      "email" : request.form['email'],
+                           {"$set" : {"email" : request.form['email'],
                                       "sandi" : request.form['sandi']}})
-
-      return redirect(url_for('dosen', nrp = request.form['id']))
+      return redirect(url_for('admin'))
 
     # EDIT AKUN MAHASISWA
     elif "@student.upnjatim" in peran:
       col_mhs.update_one({"_id" : unik},
-                         {"$set" : {"nama" : request.form['nama'],
-                                    "prodi" : request.form['prodi'],
-                                    "email" : request.form['email'],
-                                    "sandi" : request.form['sandi']}})
-                                    
-      return redirect(url_for('mahasiswa', npm = request.form['id']))
+                         {"$set" : {"email" : request.form['email'],
+                                    "sandi" : request.form['sandi']}})        
+      return redirect(url_for('admin'))
 
     pass
   else:
@@ -699,6 +694,29 @@ def nilai_matkul(npm):
   else:
     return redirect(url_for('login'))
 
+# EDIT All
+@app.route('/edit/<peran>/<unik>', methods=["POST", "GET"])
+def edit_dosen_mhs(peran, unik):
+  if "akun" in session and request.method == "POST":
+    # EDIT DATA DOSEN
+    if "@student.upnjatim" not in peran:
+      col_dosen.update_one({"_id" : unik},
+                           {"$set" : {"email" : request.form['email'],
+                                      "sandi" : request.form['sandi']}})
+      
+      return redirect(url_for('dosen', nrp = request.form['id']))
+
+    # EDIT AKUN MAHASISWA
+    elif "@student.upnjatim" in peran:
+      col_mhs.update_one({"_id" : unik},
+                         {"$set" : {"email" : request.form['email'],
+                                    "sandi" : request.form['sandi']}})
+                                    
+      return redirect(url_for('mahasiswa', npm = request.form['id']))
+    pass
+  else:
+    return redirect(url_for('login'))
+
 # UNTUK LOG OUT
 @app.route('/keluar')
 def keluar():
@@ -711,4 +729,4 @@ def keluar():
 # APABILA MENEMUKAN ROUTING URL YANG TIDAK SESUAI DENGAN KETENTUAN FIK-OCW
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('auth/404.html'), 404
+  return render_template('auth/404.html'), 404
