@@ -14,15 +14,15 @@
       </div>
       {% for nama, nilai in daftar_mhs.items() %}
       <div class="card-body">
-        <a class="mb3" href="#" data-toggle="modal" data-target="#au{{nilai[0]}}">{{ nama.split('!')[0] }}</a>
+        <a class="mb3" href="#" data-toggle="modal" data-target="#au{{ nama.split('!')[0][0] }}">{{ nama.split('!')[0] }}</a>
       </div>
 
-      <div class="modal fade" id="au{{nilai[0]}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="au{{ nama.split('!')[0][0] }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
 
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Tambah/Ubah Nilai Mahasiswa</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Tambah/Ubah Nilai {{nama.split('!')[0]}}</h5>
               <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
               </button>
