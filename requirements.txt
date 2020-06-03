@@ -4,3 +4,4 @@ pymongo
 dnspython
 flask_mail
 pyrebase
+httplib2==0.14.0
