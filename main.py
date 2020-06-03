@@ -729,3 +729,5 @@ def keluar():
 @app.errorhandler(404)
 def page_not_found(e):
   return render_template('auth/404.html'), 404
+
+app.run(debug=True)
