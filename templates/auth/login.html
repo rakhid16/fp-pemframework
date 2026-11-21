@@ -1,34 +1,47 @@
-{% extends 'auth/base.html' %}
+{% extends 'auth/base.html' %} {% block title %}Laman Masuk{% endblock %} {%
+block content %}
+<div class="text-center">
+  <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
+</div>
 
-{% block title %}Laman Masuk{% endblock %}
-
-{% block content %}
-  <div class="text-center">
-    <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
+<form class="user" method="POST">
+  <div class="form-group">
+    <input
+      required
+      name="usrnm"
+      class="form-control form-control-user"
+      id="exampleInputEmail"
+      aria-describedby="emailHelp"
+      placeholder="Email anda..."
+    />
   </div>
-  
-  <form class="user" method="POST">
-    <div class="form-group">
-      <input required name="usrnm" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email anda...">
-    </div>
-    
-    <div class="form-group">
-      <input required name="pwd" type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Kata sandi anda...">
-    </div>
-    
-    <div class="form-group">
-      <div class="custom-control custom-checkbox small">
-        <input type="checkbox" class="custom-control-input" id="customCheck">
-        <label class="custom-control-label" for="customCheck">Ingat saya</label>
-      </div>
-    </div>
 
-    <button class="btn btn-primary btn-user btn-block" type="submit">Login</button>
-    <hr>
-  </form>
-
-  <div class="text-center">
-    <div class="h4 text-gray-900 mb-4">{{pesan}}</div>
-    <a href="{{ url_for('forgot_pwd') }}">Lupa kata sandi?</a>
+  <div class="form-group">
+    <input
+      required
+      name="pwd"
+      type="password"
+      class="form-control form-control-user"
+      id="exampleInputPassword"
+      placeholder="Kata sandi anda..."
+    />
   </div>
+
+  <div class="form-group">
+    <div class="custom-control custom-checkbox small">
+      <input type="checkbox" class="custom-control-input" id="customCheck" />
+      <label class="custom-control-label" for="customCheck">Ingat saya</label>
+    </div>
+  </div>
+
+  <button class="btn btn-primary btn-user btn-block" type="submit">
+    Login
+  </button>
+  <hr />
+</form>
+
+<div class="text-center">
+  <div class="h4 text-gray-900 mb-4">{{pesan}}</div>
+  <a href="{{ url_for('forgot_pwd') }}">Lupa kata sandi?</a>
+</div>
 {% endblock %}

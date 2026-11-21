@@ -1,72 +1,149 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <link rel="icon" href="{{ url_for('static', filename='favicon_io/android-chrome-192x192.png' )}}" type="image/gif" sizes="16x16"> 
-    
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="keywords" content="Bootstrap, Landing page, Template, Registration, Landing">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="author" content="Grayrids">
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='favicon_io/android-chrome-192x192.png' )}}"
+      type="image/gif"
+      sizes="16x16"
+    />
+
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="keywords"
+      content="Bootstrap, Landing page, Template, Registration, Landing"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="author" content="Grayrids" />
     <title>Fasilkom Open Courseware</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/line-icons.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/nivo-lightbox.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/line-icons.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/owl.carousel.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/owl.theme.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/animate.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/magnific-popup.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/nivo-lightbox.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/main.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/responsive.css') }}"
+    />
   </head>
-  
+
   <body>
-    <header id="home" class="hero-area-2">    
+    <header id="home" class="hero-area-2">
       <div class="overlay"></div>
-      <nav class="navbar navbar-expand-md bg-inverse fixed-top scrolling-navbar">
+      <nav
+        class="navbar navbar-expand-md bg-inverse fixed-top scrolling-navbar"
+      >
         <div class="container">
-          <a href="{{ url_for('index')}}" class="navbar-brand"><img src="{{ url_for('static', filename='img/new_logo.png') }}" alt=""></a>  
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <a href="{{ url_for('index')}}" class="navbar-brand"
+            ><img
+              src="{{ url_for('static', filename='img/new_logo.png') }}"
+              alt=""
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <i class="lni-menu"></i>
           </button>
 
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto w-100 justify-content-end">
-              <li class="nav-item"> <a class="nav-link page-scroll" href="#home">Beranda</a></li>
-              <li class="nav-item"> <a class="nav-link page-scroll" href="#app-features">Fitur</a></li>                           
-              <li class="nav-item"> <a class="nav-link page-scroll" href="#tim">Tim</a></li> 
-              <li class="nav-item"> <a class="nav-link page-scroll" href="#map-area">Kontak</a></li> 
+              <li class="nav-item">
+                <a class="nav-link page-scroll" href="#home">Beranda</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link page-scroll" href="#app-features">Fitur</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link page-scroll" href="#tim">Tim</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link page-scroll" href="#map-area">Kontak</a>
+              </li>
             </ul>
           </div>
         </div>
       </nav>
 
-      <div class="container">      
+      <div class="container">
         <div class="row space-100">
           <div class="col-lg-7 col-md-12 col-xs-12">
             <div class="contents">
-              <h2 class="head-title">Selamat Datang di<br>FIK <i>Open Courseware</i></h2>
-              <p>E-Learning Fakultas Ilmu Komputer Universitas Pembangunan Nasional "VETERAN" Jawa Timur</p>
+              <h2 class="head-title">
+                Selamat Datang di<br />FIK <i>Open Courseware</i>
+              </h2>
+              <p>
+                E-Learning Fakultas Ilmu Komputer Universitas Pembangunan
+                Nasional "VETERAN" Jawa Timur
+              </p>
               <div class="header-button">
-                <a href="{{ url_for('login')}}" class="btn btn-border-filled">Masuk</a>
+                <a href="{{ url_for('login')}}" class="btn btn-border-filled"
+                  >Masuk</a
+                >
               </div>
             </div>
           </div>
           <div class="col-lg-5 col-md-12 col-xs-12">
             <div class="intro-img">
-              <img src="{{ url_for('static', filename='img/for_heading.png') }}" alt="">
-            </div>            
+              <img
+                src="{{ url_for('static', filename='img/for_heading.png') }}"
+                alt=""
+              />
+            </div>
           </div>
-        </div> 
-      </div>             
+        </div>
+      </div>
     </header>
 
     <div id="app-features" class="section">
       <div class="container">
-        <div class="section-header">   
-          <p class="btn btn-subtitle wow fadeInDown" data-wow-delay="0.2s">Fitur</p>       
-          <h2 class="section-title wow fadeIn" data-wow-delay="0.2s">Kualitas Terjamin</h2>
+        <div class="section-header">
+          <p class="btn btn-subtitle wow fadeInDown" data-wow-delay="0.2s">
+            Fitur
+          </p>
+          <h2 class="section-title wow fadeIn" data-wow-delay="0.2s">
+            Kualitas Terjamin
+          </h2>
         </div>
 
         <div class="row">
@@ -78,7 +155,10 @@
                 </span>
                 <div class="text">
                   <h4>Ramah Pengguna</h4>
-                  <p>Desain dibuat agar mahasiswa dan dosen dapat menggunakan layanan dengan mudah.</p>
+                  <p>
+                    Desain dibuat agar mahasiswa dan dosen dapat menggunakan
+                    layanan dengan mudah.
+                  </p>
                 </div>
               </div>
               <div class="box-item left">
@@ -96,7 +176,10 @@
                 </span>
                 <div class="text">
                   <h4>Dukungan 24/7</h4>
-                  <p>Apabila ada masalah silahkan kontak salah satu dari tim pengembang dan admin.</p>
+                  <p>
+                    Apabila ada masalah silahkan kontak salah satu dari tim
+                    pengembang dan admin.
+                  </p>
                 </div>
               </div>
             </div>
@@ -104,7 +187,10 @@
 
           <div class="col-lg-4 col-md-12 col-xs-12">
             <div class="show-box">
-              <img src="{{ url_for('static', filename='img/features/fitur.png') }}" alt="">
+              <img
+                src="{{ url_for('static', filename='img/features/fitur.png') }}"
+                alt=""
+              />
             </div>
           </div>
 
@@ -116,7 +202,10 @@
                 </span>
                 <div class="text">
                   <h4>Aman</h4>
-                  <p>Layanan keamanan berlapis aman dari serangan peretas insyaa Allah.</p>
+                  <p>
+                    Layanan keamanan berlapis aman dari serangan peretas insyaa
+                    Allah.
+                  </p>
                 </div>
               </div>
               <div class="box-item right">
@@ -125,7 +214,10 @@
                 </span>
                 <div class="text">
                   <h4>Berkualitas</h4>
-                  <p>Materi disusun dengan kurikulum terbaru sesuai dengan tuntutan zaman.</p>
+                  <p>
+                    Materi disusun dengan kurikulum terbaru sesuai dengan
+                    tuntutan zaman.
+                  </p>
                 </div>
               </div>
               <div class="box-item right">
@@ -134,12 +226,14 @@
                 </span>
                 <div class="text">
                   <h4>Pencetak Prestasi</h4>
-                  <p>Setelah mendapatkan materi di sini mahasiswa diharapkan dapat memiliki segudang prestasi akademik.</p>
+                  <p>
+                    Setelah mendapatkan materi di sini mahasiswa diharapkan
+                    dapat memiliki segudang prestasi akademik.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -149,15 +243,23 @@
         <div class="row">
           <div class="col-lg-6 col-md-12 col-sm-12">
             <div class="img-thumb wow fadeInLeft" data-wow-delay="0.3s">
-              <img class="img-fluid" src="{{ url_for('static', filename='img/features/img1.jpg') }}" alt="">
+              <img
+                class="img-fluid"
+                src="{{ url_for('static', filename='img/features/img1.jpg') }}"
+                alt=""
+              />
             </div>
           </div>
           <div class="col-lg-6 col-md-12 col-sm-12">
             <div class="text-wrapper wow fadeInRight" data-wow-delay="0.6s">
               <div>
-                <p class="btn btn-subtitle">Konten</p>  
+                <p class="btn btn-subtitle">Konten</p>
                 <h3>Menyenangkan!</h3>
-                <p>Penyampaian materi disusun secara lugas, tidak bertele-tele dan tidak membosankan. Hal ini dilakukan agar mahasiswa dapat mendapatkan ilmu dengan mudah dan tahan lama.</p>
+                <p>
+                  Penyampaian materi disusun secara lugas, tidak bertele-tele
+                  dan tidak membosankan. Hal ini dilakukan agar mahasiswa dapat
+                  mendapatkan ilmu dengan mudah dan tahan lama.
+                </p>
               </div>
             </div>
           </div>
@@ -167,34 +269,51 @@
           <div class="col-lg-6 col-md-12 col-sm-12">
             <div class="text-wrapper wow fadeInRight" data-wow-delay="0.9s">
               <div>
-                <p class="btn btn-subtitle">Selalu <i>up to date</i></p>  
+                <p class="btn btn-subtitle">Selalu <i>up to date</i></p>
                 <h3>Santai!</h3>
-                <p>Seluruh pembaruan tugas maupun ujian diberitahukan melalui email mahasiswa masing-masing sehingga setiap mahasiswa tidak perlu khawatir akan ketertinggalan informasi.</p>
+                <p>
+                  Seluruh pembaruan tugas maupun ujian diberitahukan melalui
+                  email mahasiswa masing-masing sehingga setiap mahasiswa tidak
+                  perlu khawatir akan ketertinggalan informasi.
+                </p>
               </div>
             </div>
           </div>
-           <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="col-lg-6 col-md-12 col-sm-12">
             <div class="img-thumb wow fadeInLeft" data-wow-delay="1.2s">
-              <img class="img-fluid" src="{{ url_for('static', filename='img/features/img2.png') }}" alt="">
+              <img
+                class="img-fluid"
+                src="{{ url_for('static', filename='img/features/img2.png') }}"
+                alt=""
+              />
             </div>
           </div>
         </div>
       </div>
-    </div> 
+    </div>
 
     <section id="tim" class="section">
       <div class="container">
-        <div class="section-header">   
-          <p class="btn btn-subtitle wow fadeInDown" data-wow-delay="0.2s">Tim</p>       
+        <div class="section-header">
+          <p class="btn btn-subtitle wow fadeInDown" data-wow-delay="0.2s">
+            Tim
+          </p>
           <h2 class="section-title">Pengembang dan Admin</h2>
         </div>
         <div class="row">
           <div class="col-lg-3 col-md-6 col-xs-12">
             <div class="single-team wow fadeInUp" data-wow-delay="0.2s">
               <div class="team-thumb">
-                <img src="{{ url_for('static', filename='img/team/team1.jpg') }}" alt="">
+                <img
+                  src="{{ url_for('static', filename='img/team/team1.jpg') }}"
+                  alt=""
+                />
                 <ul class="social-list">
-                  <li class="linkedin"><a href="https://github.com/maulidr17"><i class="lni-github"></i></a></li>
+                  <li class="linkedin">
+                    <a href="https://github.com/maulidr17"
+                      ><i class="lni-github"></i
+                    ></a>
+                  </li>
                 </ul>
               </div>
               <div class="team-details">
@@ -209,9 +328,16 @@
           <div class="col-lg-3 col-md-6 col-xs-12">
             <div class="single-team wow fadeInUp" data-wow-delay="0.3s">
               <div class="team-thumb">
-                <img src="{{ url_for('static', filename='img/team/team2.jpg') }}" alt="">
+                <img
+                  src="{{ url_for('static', filename='img/team/team2.jpg') }}"
+                  alt=""
+                />
                 <ul class="social-list">
-                  <li class="linkedin"><a href="https://github.com/fitriaulia"><i class="lni-github"></i></a></li>
+                  <li class="linkedin">
+                    <a href="https://github.com/fitriaulia"
+                      ><i class="lni-github"></i
+                    ></a>
+                  </li>
                 </ul>
               </div>
               <div class="team-details">
@@ -226,13 +352,20 @@
           <div class="col-lg-3 col-md-6 col-xs-12">
             <div class="single-team wow fadeInUp" data-wow-delay="0.4s">
               <div class="team-thumb">
-                <img src="{{ url_for('static', filename='img/team/team3.jpg') }}" alt="">
+                <img
+                  src="{{ url_for('static', filename='img/team/team3.jpg') }}"
+                  alt=""
+                />
                 <ul class="social-list">
-                  <li class="linkedin"><a href="https://github.com/rakhid16"><i class="lni-github"></i></a></li>
+                  <li class="linkedin">
+                    <a href="https://github.com/rakhid16"
+                      ><i class="lni-github"></i
+                    ></a>
+                  </li>
                 </ul>
               </div>
               <div class="team-details">
-                <div class="team-inner">                  
+                <div class="team-inner">
                   <h4 class="team-title">Rakhman Wahid</h4>
                   <p>17081010068</p>
                 </div>
@@ -243,9 +376,16 @@
           <div class="col-lg-3 col-md-6 col-xs-12">
             <div class="single-team wow fadeInUp" data-wow-delay="0.5s">
               <div class="team-thumb">
-                <img src="{{ url_for('static', filename='img/team/team4.jpg') }}" alt="">
+                <img
+                  src="{{ url_for('static', filename='img/team/team4.jpg') }}"
+                  alt=""
+                />
                 <ul class="social-list">
-                  <li class="linkedin"><a href="https://github.com/amirfanani"><i class="lni-github"></i></a></li>
+                  <li class="linkedin">
+                    <a href="https://github.com/amirfanani"
+                      ><i class="lni-github"></i
+                    ></a>
+                  </li>
                 </ul>
               </div>
               <div class="team-details">
@@ -264,64 +404,113 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12 padding-0">
-            <object style="border:0; height: 450px; width: 100%;" data="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1978.5885227670788!2d112.78770505806047!3d-7.334004238409737!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xaae1e1cbcc3e2778!2sFakultas%20Ilmu%20Komputer%202%20UPN%20Veteran%20Jatim!5e0!3m2!1sid!2sid!4v1589459392226!5m2!1sid!2sid"></object>
+            <object
+              style="border: 0; height: 450px; width: 100%"
+              data="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1978.5885227670788!2d112.78770505806047!3d-7.334004238409737!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xaae1e1cbcc3e2778!2sFakultas%20Ilmu%20Komputer%202%20UPN%20Veteran%20Jatim!5e0!3m2!1sid!2sid!4v1589459392226!5m2!1sid!2sid"
+            ></object>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="contact">      
+    <section id="contact">
       <div class="contact-form">
         <div class="container">
-          <div class="row justify-content-center"> 
+          <div class="row justify-content-center">
             <div class="offset-top">
               <div class="col-lg-12 col-md-12 col-xs-12">
                 <div class="contact-block wow fadeInUp" data-wow-delay="0.2s">
-                  <div class="section-header">   
-                    <p class="btn btn-subtitle wow fadeInDown" data-wow-delay="0.2s">Kontak Kami</p>
+                  <div class="section-header">
+                    <p
+                      class="btn btn-subtitle wow fadeInDown"
+                      data-wow-delay="0.2s"
+                    >
+                      Kontak Kami
+                    </p>
                     <h4>{{ pesan }}</h4>
                   </div>
-                  
-                  <form action="{{ url_for('index') }}" method="POST" id="contactForm">
+
+                  <form
+                    action="{{ url_for('index') }}"
+                    method="POST"
+                    id="contactForm"
+                  >
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <input type="text" class="form-control" id="name" name="sender" placeholder="Nama" required data-error="Masukkan nama anda">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="name"
+                            name="sender"
+                            placeholder="Nama"
+                            required
+                            data-error="Masukkan nama anda"
+                          />
                           <div class="help-block with-errors"></div>
-                        </div>                                 
+                        </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
-                          <input type="text" placeholder="Email" id="email" class="form-control" name="sender_email" required data-error="Masukkan email anda">
+                          <input
+                            type="text"
+                            placeholder="Email"
+                            id="email"
+                            class="form-control"
+                            name="sender_email"
+                            required
+                            data-error="Masukkan email anda"
+                          />
                           <div class="help-block with-errors"></div>
-                        </div> 
+                        </div>
                       </div>
                       <div class="col-md-12">
                         <div class="form-group">
-                          <input type="text" placeholder="Subjek" id="msg_subject" class="form-control" required="" data-error="Tentukan subjek pesan" name="sender_subjek">
+                          <input
+                            type="text"
+                            placeholder="Subjek"
+                            id="msg_subject"
+                            class="form-control"
+                            required=""
+                            data-error="Tentukan subjek pesan"
+                            name="sender_subjek"
+                          />
                           <div class="help-block with-errors"></div>
                         </div>
                       </div>
                       <div class="col-md-12">
-                        <div class="form-group"> 
-                          <textarea class="form-control" id="message" placeholder="Pesan" rows="7" data-error="Tulis pesan anda" required name="pesan_banyak"></textarea>
+                        <div class="form-group">
+                          <textarea
+                            class="form-control"
+                            id="message"
+                            placeholder="Pesan"
+                            rows="7"
+                            data-error="Tulis pesan anda"
+                            required
+                            name="pesan_banyak"
+                          ></textarea>
                           <div class="help-block with-errors"></div>
                         </div>
                         <div class="submit-button">
-                          <button class="btn btn-common btn-effect" id="submit" type="submit">Kirim</button>
-                          <div id="msgSubmit" class="h3 hidden"></div> 
-                          <div class="clearfix"></div> 
+                          <button
+                            class="btn btn-common btn-effect"
+                            id="submit"
+                            type="submit"
+                          >
+                            Kirim
+                          </button>
+                          <div id="msgSubmit" class="h3 hidden"></div>
+                          <div class="clearfix"></div>
                         </div>
                       </div>
-                    </div>            
+                    </div>
                   </form>
-
                 </div>
               </div>
-            </div> 
+            </div>
           </div>
         </div>
-      </div>        
+      </div>
     </section>
 
     <footer>
@@ -329,9 +518,16 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
-              <img src="{{ url_for('static', filename='img/new_logo.png') }}" alt="">
+              <img
+                src="{{ url_for('static', filename='img/new_logo.png') }}"
+                alt=""
+              />
               <div class="textwidget">
-                <p>Jl Rungkut Madya, Gunung Anyar, SBY<br>Telp : +62 (031) 870 6369<br>Fax. : +62 (031) 870 6372<br>Surel : humas@upnjatim.ac.id<br></p>
+                <p>
+                  Jl Rungkut Madya, Gunung Anyar, SBY<br />Telp : +62 (031) 870
+                  6369<br />Fax. : +62 (031) 870 6372<br />Surel :
+                  humas@upnjatim.ac.id<br />
+                </p>
               </div>
             </div>
 
@@ -339,11 +535,32 @@
               <div class="widget">
                 <h3 class="block-title">Unit Pelaksana Teknis</h3>
                 <ul class="menu">
-                  <li><a href="http://pustaka.upnjatim.ac.id/">UPT - Perpustakaan</a></li>
-                  <li><a href="http://pusbasa.upnjatim.ac.id/">UPT - Pusat Bahasa</a></li>
-                  <li><a href="http://lpt.upnjatim.ac.id/">UPT - Laboratorium Terpadu</a></li>
-                  <li><a href="https://www.upnjatim.ac.id/upt-pengembangan-karir-kewirausahaan/">UPT - Pengembangan Karir & Kewirausahaan</a></li>
-                  <li><a href="https://upttik.upnjatim.ac.id/">UPT - Teknologi, Informasi & Komunikasi</a></li>
+                  <li>
+                    <a href="http://pustaka.upnjatim.ac.id/"
+                      >UPT - Perpustakaan</a
+                    >
+                  </li>
+                  <li>
+                    <a href="http://pusbasa.upnjatim.ac.id/"
+                      >UPT - Pusat Bahasa</a
+                    >
+                  </li>
+                  <li>
+                    <a href="http://lpt.upnjatim.ac.id/"
+                      >UPT - Laboratorium Terpadu</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.upnjatim.ac.id/upt-pengembangan-karir-kewirausahaan/"
+                      >UPT - Pengembangan Karir & Kewirausahaan</a
+                    >
+                  </li>
+                  <li>
+                    <a href="https://upttik.upnjatim.ac.id/"
+                      >UPT - Teknologi, Informasi & Komunikasi</a
+                    >
+                  </li>
                 </ul>
               </div>
             </div>
@@ -354,8 +571,17 @@
                 <ul class="menu">
                   <li><a href="http://lppm.upnjatim.ac.id/">LPPM</a></li>
                   <li><a href="http://lp3m.upnjatim.ac.id/">LP3M</a></li>
-                  <li><a href="https://www.upnjatim.ac.id/biro-umum-dan-keuangan/">Biro Umum & Keuangan</a></li>
-                  <li><a href="https://www.upnjatim.ac.id/biro-akademik-kemahasiswaan-perencanaan-dan-kerjasama/">Biro Kemahasiswaan, Perencanaan & Kerja Sama</a></li>
+                  <li>
+                    <a href="https://www.upnjatim.ac.id/biro-umum-dan-keuangan/"
+                      >Biro Umum & Keuangan</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.upnjatim.ac.id/biro-akademik-kemahasiswaan-perencanaan-dan-kerjasama/"
+                      >Biro Kemahasiswaan, Perencanaan & Kerja Sama</a
+                    >
+                  </li>
                 </ul>
               </div>
             </div>
@@ -365,7 +591,9 @@
                 <h3 class="block-title">Program Studi</h3>
                 <ul class="menu">
                   <li><a href="https://if.upnjatim.ac.id/">Informatika</a></li>
-                  <li><a href="http://sisfo.upnjatim.ac.id/">Sistem Informasi</a></li>
+                  <li>
+                    <a href="http://sisfo.upnjatim.ac.id/">Sistem Informasi</a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -378,11 +606,17 @@
               <div class="col-md-12">
                 <div class="site-info float-left">
                   <p>&copy; 2020 - by Maul and the Gang</p>
-                </div>              
-                <div class="float-right">  
+                </div>
+                <div class="float-right">
                   <ul class="footer-social">
-                    <li><a class="github" href="https://github.com/rakhid16/fp-pemframework"><i class="lni-github"></i></a></li>
-                  </ul> 
+                    <li>
+                      <a
+                        class="github"
+                        href="https://github.com/rakhid16/fp-pemframework"
+                        ><i class="lni-github"></i
+                      ></a>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -393,7 +627,7 @@
 
     <a href="#" class="back-to-top">
       <i class="lni-chevron-up"></i>
-    </a> 
+    </a>
 
     <div id="preloader">
       <div class="loader" id="loader-1"></div>
